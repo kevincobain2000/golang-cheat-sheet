@@ -2,6 +2,6 @@
 
 ## Credit to resources
 
-Most example code taken from github, blogs and other misc resources. Please find the links below. This repository aggregates contents from good resources.
+Most example code taken from github, blogs and other misc resources. Please find the links below. This repository aggregates contents from following resources.
 
-- https://github.com/a8m/go-lang-cheat-sheet
+1. https://github.com/a8m/go-lang-cheat-sheet
