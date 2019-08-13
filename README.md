@@ -1,6 +1,6 @@
 ## Demo app
 
-Search google cloud icons portal.
+Golang cheat sheet search page.
 
 https://kevincobain2000.github.io/golang-cheat-sheet
 
@@ -29,13 +29,11 @@ npm run deploy
 npm run test
 ```
 
-## Useful Commands
-
-```bash
-tree -J static/GCP\ Icons/Products\ \&\ Services
-```
-
 ## Contribution
 
 - Fork this repository
 - Add your icons and submit a pull request
+
+## Credits
+
+Please visit https://kevincobain2000.github.io/golang-cheat-sheet for all credits
