@@ -14,7 +14,7 @@ const Index = props => {
       },
       {
         name: "subtitle",
-        weight: 0.2
+        weight: 0.3
       },
       {
         name: "subsubtitle",
@@ -22,7 +22,7 @@ const Index = props => {
       },
       {
         name: "raw",
-        weight: 0.3
+        weight: 0.2
       }
     ]
   };
@@ -41,8 +41,9 @@ const Index = props => {
     <Layout>
       <h1>
         <img className="icon-image" src="./static/logo.png" alt="logo icon" />
-        Go lang Cheat Sheet
+        <span className="ml-4">Go lang Cheat Sheet</span>
       </h1>
+      <br />
       <form onSubmit={handleSubmit}>
         <fieldset>
           <input
