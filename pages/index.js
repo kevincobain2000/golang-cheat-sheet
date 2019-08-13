@@ -26,7 +26,6 @@ const Index = props => {
       }
     ]
   };
-  console.log(props.items);
 
   let fuse = new Fuse(props.items, options);
   let filterItems = name => {

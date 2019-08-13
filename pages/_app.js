@@ -25,12 +25,12 @@ export default class MyApp extends App {
             type="image/x-icon"
             href="static/favicon.ico"
           />
-          <meta name="description" content="Go Lang cheat sheet. Easy searchable features and syntax for go language cheat sheet" />
+          <meta name="description" content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language cheat sheet" />
           <meta name="author" content="Pulkit Kathuria" />
           <meta property="og:title" content="Pulkit Kathuria" />
           <meta
             property="og:description"
-            content="Go Lang cheat sheet. Easy searchable features and syntax for go language cheat sheet"
+            content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language cheat sheet"
           />
           <meta property="og:image" content="./static/icon.png" />
           <meta
