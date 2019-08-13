@@ -19,20 +19,20 @@ export default class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>Go Lang Cheat Sheet</title>
+          <title>Go Language Cheat Sheet</title>
           <link
             rel="shortcut icon"
             type="image/x-icon"
             href="static/favicon.ico"
           />
-          <meta name="description" content="Golang cheat sheet" />
+          <meta name="description" content="Go Lang cheat sheet. Easy searchable features and syntax for go language cheat sheet" />
           <meta name="author" content="Pulkit Kathuria" />
           <meta property="og:title" content="Pulkit Kathuria" />
           <meta
             property="og:description"
-            content="Golang cheat sheet. An overview of Go syntax and features"
+            content="Go Lang cheat sheet. Easy searchable features and syntax for go language cheat sheet"
           />
-          <meta property="og:image" content="./static/gcp.png" />
+          <meta property="og:image" content="./static/icon.png" />
           <meta
             property="og:url"
             content="https://kevincobain2000.github.io/golang-cheat-sheet"
@@ -49,7 +49,8 @@ export default class MyApp extends App {
         <footer>
           <a
             href="https://github.com/kevincobain2000/golang-cheat-sheet"
-            title="Golang cheatsheet"
+            cl
+            title="Golang cheat sheet"
           >
             Github
           </a>
