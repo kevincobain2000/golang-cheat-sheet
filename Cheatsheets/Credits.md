@@ -1,7 +1,0 @@
-# Credits
-
-## Credit to resources
-
-Most example code taken from github, blogs and other misc resources. Please find the links below. This repository aggregates contents from following resources.
-
-1. https://github.com/a8m/go-lang-cheat-sheet

@@ -6,7 +6,7 @@ let fs = require("fs");
 
 let jsonObjOut = [];
 
-let filenames = ["Cheatsheets/Credits.md", "Cheatsheets/Syntax.md"];
+let filenames = ["Cheatsheets/Golang.md"];
 
 for (let filename of filenames) {
   let content = fs.readFileSync(process.cwd() + "/" + filename).toString();
@@ -38,11 +38,10 @@ for (let filename of filenames) {
       }
     }
   }
+  let json = JSON.stringify(jsonObjOut);
+
+  fs.writeFile("static/Golang.json", json, err => {
+    if (err) console.log(err);
+    console.log("Successfully Written Markdown to Json File.");
+  });
 }
-
-let json = JSON.stringify(jsonObjOut);
-
-fs.writeFile("static/Syntax.json", json, err => {
-  if (err) console.log(err);
-  console.log("Successfully Written to File.");
-});

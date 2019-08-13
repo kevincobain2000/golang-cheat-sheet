@@ -9,7 +9,8 @@ let exports2 = {
 let exports3 = {
   exportPathMap: () => {
     return {
-      "/": { page: "/" }
+      "/": { page: "/" },
+      "/gorm": { page: "/gorm" }
       // "/post/:id": { page: "/post", id: { id } }
     };
   }

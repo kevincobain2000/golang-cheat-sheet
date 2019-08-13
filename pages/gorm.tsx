@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import Fuse from "fuse.js";
 import Link from "next/link";
 
-const Index = (props: any) => {
+const Gorm = (props: any) => {
   const [items, setItems] = useState(props.items);
 
   let options: object = {
@@ -47,11 +47,11 @@ const Index = (props: any) => {
       </h1>
       <p>Simple and easy way to navigate through the cheatsheet</p>
       <p>
-        <Link href="/">
-          <a className="color-link">Golang</a>
-        </Link>{" "}
+        <a className="color-link" href="">
+          Golang
+        </a>{" "}
         |{" "}
-        <Link href="/gorm">
+        <Link href="/post">
           <a className="color-link">Gorm</a>
         </Link>
       </p>
@@ -80,9 +80,9 @@ const Index = (props: any) => {
   );
 };
 
-Index.getInitialProps = (): Object => {
+Gorm.getInitialProps = (): Object => {
   const items = require("../static/Golang.json");
   return { items };
 };
 
-export default Index;
+export default Gorm;
