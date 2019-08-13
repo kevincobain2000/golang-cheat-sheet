@@ -1,7 +1,7 @@
 import React from "react";
 import MarkdownContent from "../components/MarkdownContent";
 
-const Card = props => {
+const Card = (props: any): JSX.Element => {
   return (
     <div className="card">
       <header className="card-header">
@@ -9,11 +9,6 @@ const Card = props => {
           <b>{props.item.subtitle}</b>
           <span className="ml-2 mono">({props.item.title})</span>
         </span>
-        <a href="#" className="card-header-icon" aria-label="more options">
-          <span className="icon">
-            <i className="fas fa-angle-down" aria-hidden="true" />
-          </span>
-        </a>
       </header>
       <div className="card-content">
         <div className="content">

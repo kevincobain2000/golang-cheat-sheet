@@ -3,7 +3,7 @@ import Document, { Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
-    const page = renderPage();
+    const page: any = renderPage();
 
     return {
       ...page

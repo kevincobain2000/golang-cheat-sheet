@@ -1,8 +1,8 @@
 import React from "react";
 
-const ReactMarkdown = require("react-markdown");
+import ReactMarkdown from "react-markdown";
 
-const MarkdownContent = props => {
+const MarkdownContent = (props: any): JSX.Element => {
   return (
     <div>
       <ReactMarkdown source={props.raw} escapeHtml={false} />

@@ -3,10 +3,10 @@ import Layout from "../components/Layout";
 import Card from "../components/Card";
 import Fuse from "fuse.js";
 
-const Index = props => {
+const Index = (props: any) => {
   const [items, setItems] = useState(props.items);
 
-  let options = {
+  let options: object = {
     keys: [
       {
         name: "title",
@@ -28,11 +28,13 @@ const Index = props => {
   };
 
   let fuse = new Fuse(props.items, options);
-  let filterItems = name => {
+
+  let handleInputChange = (name: string): void => {
     let items = name && name.trim() ? fuse.search(name) : [...props.items];
-    setItems(items);
+    return setItems(items);
   };
-  const handleSubmit = event => {
+
+  const handleSubmit = (event: any): void => {
     event.preventDefault();
   };
 
@@ -51,7 +53,7 @@ const Index = props => {
             type="text"
             className="input is-info"
             placeholder="Type here..."
-            onChange={e => filterItems(e.target.value)}
+            onChange={e => handleInputChange(e.target.value)}
           />
           <br />
           <br />
@@ -68,7 +70,7 @@ const Index = props => {
   );
 };
 
-Index.getInitialProps = () => {
+Index.getInitialProps = (): Object => {
   const items = require("../static/Syntax.json");
   return { items };
 };

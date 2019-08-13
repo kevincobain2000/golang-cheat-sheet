@@ -3,7 +3,7 @@ const withCSS = require("@zeit/next-css");
 
 let exports1 = withCSS(withSass());
 let exports2 = {
-  assetPrefix: "/golang-cheat-sheet/"
+  // assetPrefix: "/golang-cheat-sheet/"
 };
 
 let exports3 = {
