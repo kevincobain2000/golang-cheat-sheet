@@ -43,6 +43,7 @@ const Index = props => {
         <img className="icon-image" src="./static/logo.png" alt="logo icon" />
         <span className="ml-4">Go lang Cheat Sheet</span>
       </h1>
+      <p>Simple and easy way to navigate through the cheatsheet</p>
       <br />
       <form onSubmit={handleSubmit}>
         <fieldset>

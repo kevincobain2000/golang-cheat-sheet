@@ -46,6 +46,14 @@ export default class MyApp extends App {
         </Head>
 
         <Component {...pageProps} />
+        <footer>
+          <a
+            href="https://github.com/kevincobain2000/golang-cheat-sheet"
+            title="Golang cheatsheet"
+          >
+            Github
+          </a>
+        </footer>
       </Container>
     );
   }

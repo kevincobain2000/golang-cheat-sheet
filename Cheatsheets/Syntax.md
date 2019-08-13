@@ -1,25 +1,3 @@
-# Go Cheat Sheet
-
-## Credits
-
-Most example code taken from [A Tour of Go](http://tour.golang.org/), which is an excellent introduction to Go.
-If you're new to Go, do that tour. Seriously.
-
-## Go in a Nutshell
-
-* Imperative language
-* Statically typed
-* Syntax tokens similar to C (but less parentheses and no semicolons) and the structure to Oberon-2
-* Compiles to native code (no JVM)
-* No classes, but structs with methods
-* Interfaces
-* No implementation inheritance. There's [type embedding](http://golang.org/doc/effective%5Fgo.html#embedding), though.
-* Functions are first class citizens
-* Functions can return multiple values
-* Has closures
-* Pointers, but not pointer arithmetic
-* Built-in concurrency primitives: Goroutines and Channels
-
 # Basic Syntax
 
 ## Hello World

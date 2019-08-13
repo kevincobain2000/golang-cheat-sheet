@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "deploy": "npm run export; ./deploy.sh",
-    "build": "next build",
+    "build": "node md-2-json.js; next build",
     "export": "next build && next export -o dist/",
     "start": "NODE_ENV=production node server.js",
     "lint": "eslint -c .eslintrc.json --ext .js,.ts,.tsx {pages,components}/**",

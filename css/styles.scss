@@ -81,7 +81,7 @@ input {
   opacity: 0.85;
 }
 .icon-image {
-  vertical-align: bottom;
+  vertical-align: sub;
 }
 .card-header-title {
   text-align: left;
@@ -94,4 +94,10 @@ input {
 }
 .ml-4 {
   margin-left: 4px;
+}
+footer {
+  margin-top: 20px;
+}
+code {
+  color: #363b9c;
 }
