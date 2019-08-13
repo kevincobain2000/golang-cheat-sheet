@@ -9,11 +9,19 @@ const Index = props => {
   let options = {
     keys: [
       {
-        title: "raw",
-        weight: 0.7
+        name: "title",
+        weight: 0.2
       },
       {
-        title: "contents",
+        name: "subtitle",
+        weight: 0.2
+      },
+      {
+        name: "subsubtitle",
+        weight: 0.3
+      },
+      {
+        name: "raw",
         weight: 0.3
       }
     ]
@@ -33,7 +41,7 @@ const Index = props => {
     <Layout>
       <h1>
         <img className="icon-image" src="./static/logo.png" alt="logo icon" />
-        List of Anything
+        Go lang Cheat Sheet
       </h1>
       <form onSubmit={handleSubmit}>
         <fieldset>
@@ -49,9 +57,9 @@ const Index = props => {
         </fieldset>
       </form>
       <div className="columns is-multiline">
-        {Object.keys(items).map((title, key) => (
+        {items.map((item, key) => (
           <div className="column is-12" key={key}>
-            <Card title={title} item={items[title]} />
+            <Card item={item} />
           </div>
         ))}
       </div>

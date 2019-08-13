@@ -34,20 +34,31 @@ body {
   color: #2c3e50;
   margin-top: 60px;
 }
+.mono {
+  font-family: "Inconsolata", monospace;
+  font-weight: 100;
+}
+
 button,
 h1,
+h2,
+h3,
 a,
 b {
   font-family: "Nunito", sans-serif;
 }
 h1 {
   font-size: 17px;
-  font-weight: bold;
-  margin-bottom: 10px;
+}
+.content h2 {
+  font-size: 1.25em;
+}
+.content h3 {
+  font-size: 1em;
 }
 .content ul {
   line-height: 1em;
-  margin: 0px;
+  // margin: 0px;
 }
 .content ol {
   display: list-item;
@@ -77,4 +88,7 @@ input {
 }
 .card-content {
   text-align: left !important;
+}
+.ml-2 {
+  margin-left: 2px;
 }
