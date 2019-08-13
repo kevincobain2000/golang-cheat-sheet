@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url("https://fonts.googleapis.com/css?family=Inconsolata|Nunito:400,700");
+
+// Set your brand colors
+$purple: #8a4d76;
+$pink: #fa7c91;
+$brown: #757763;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+$pink: #fa7c91;
+
+// Update Bulma's global variables
+$family-sans-serif: "Inconsolata", sans-serif;
+
+$primary: $purple;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+$body-background-color: $beige-lighter;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+$link: $pink;
+
+@import "../node_modules/bulma/bulma.sass";
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+button,
+h1,
+a,
+b {
+  font-family: "Nunito", sans-serif;
+}
+h1 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.content ul {
+  line-height: 1em;
+  margin: 0px;
+}
+.content ol {
+  display: list-item;
+  // margin: 0px;
+}
+input {
+  text-align: center;
+  font-weight: bold;
+}
+
+.container.is-mobile {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.card-thumb-image {
+  height: 125px;
+  width: 125px;
+}
+.card-thumb-image:hover {
+  opacity: 0.85;
+}
+.icon-image {
+  vertical-align: bottom;
+}
+.card-header-title {
+  text-align: left;
+}
+.card-content {
+  text-align: left !important;
+}

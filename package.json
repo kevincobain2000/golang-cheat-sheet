@@ -1,0 +1,46 @@
+{
+  "name": "list-of-anything",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "deploy": "npm run export; ./deploy.sh",
+    "build": "next build",
+    "export": "next build && next export -o dist/",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "eslint -c .eslintrc.json --ext .js,.ts,.tsx {pages,components}/**",
+    "stylelint": "stylelint.js --config=.stylelintrc.json css/*",
+    "next-start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
+    "bulma": "^0.7.5",
+    "express": "^4.16.4",
+    "fuse.js": "^3.4.5",
+    "isomorphic-unfetch": "^3.0.0",
+    "lodash": ">=4.17.13",
+    "morgan": "^1.9.1",
+    "next": "^9.0.3",
+    "node-sass": "^4.12.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-ga": "^2.6.0",
+    "react-markdown": "^4.0.3",
+    "styled-components": "^4.3.2",
+    "stylelint": "^10.1.0",
+    "stylelint-scss": "^3.9.3"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.1",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-plugin-css-modules": "^2.11.0",
+    "eslint-plugin-react": "^7.14.3",
+    "typescript": "^3.5.3"
+  }
+}
