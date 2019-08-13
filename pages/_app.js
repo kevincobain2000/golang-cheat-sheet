@@ -25,7 +25,10 @@ export default class MyApp extends App {
             type="image/x-icon"
             href="static/favicon.ico"
           />
-          <meta name="description" content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language cheat sheet" />
+          <meta
+            name="description"
+            content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language cheat sheet"
+          />
           <meta name="author" content="Pulkit Kathuria" />
           <meta property="og:title" content="Pulkit Kathuria" />
           <meta
@@ -46,15 +49,6 @@ export default class MyApp extends App {
         </Head>
 
         <Component {...pageProps} />
-        <footer>
-          <a
-            href="https://github.com/kevincobain2000/golang-cheat-sheet"
-            cl
-            title="Golang cheat sheet"
-          >
-            Github
-          </a>
-        </footer>
       </Container>
     );
   }
