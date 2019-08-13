@@ -9,11 +9,11 @@ const Index = props => {
   let options = {
     keys: [
       {
-        name: "name",
+        title: "raw",
         weight: 0.7
       },
       {
-        name: "contents",
+        title: "contents",
         weight: 0.3
       }
     ]
@@ -22,7 +22,6 @@ const Index = props => {
 
   let fuse = new Fuse(props.items, options);
   let filterItems = name => {
-    console.log(props.items);
     let items = name && name.trim() ? fuse.search(name) : [...props.items];
     setItems(items);
   };

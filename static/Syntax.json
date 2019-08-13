@@ -1,114 +1,194 @@
-{
-  "Go Cheat Sheet": {
-    "Credits": {
-      "raw": "Most example code taken from [A Tour of Go](http://tour.golang.org/), which is an excellent introduction to Go.\nIf you're new to Go, do that tour. Seriously.\n\n\n"
-    },
-    "Go in a Nutshell": {
-      "raw": "- Imperative language\n- Statically typed\n- Syntax tokens similar to C (but less parentheses and no semicolons) and the structure to Oberon-2\n- Compiles to native code (no JVM)\n- No classes, but structs with methods\n- Interfaces\n- No implementation inheritance. There's [type embedding](http://golang.org/doc/effective%5Fgo.html#embedding), though.\n- Functions are first class citizens\n- Functions can return multiple values\n- Has closures\n- Pointers, but not pointer arithmetic\n- Built-in concurrency primitives: Goroutines and Channels\n\n"
-    }
+[
+  {
+    "title": "Go Cheat Sheet",
+    "subtitle": "Credits",
+    "subsubtitle": "Credits",
+    "raw": "Most example code taken from [A Tour of Go](http://tour.golang.org/), which is an excellent introduction to Go.\nIf you're new to Go, do that tour. Seriously.\n\n\n"
   },
-  "Basic Syntax": {
-    "Hello World": {
-      "raw": "File `hello.go`:\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    fmt.Println(\"Hello Go\")\n}\n```\n\n`$ go run hello.go`\n\n\n"
-    },
-    "Operators": {
-      "Arithmetic": {
-        "raw": "| Operator | Description | \n|---|---|\n| `+` | addition | \n| `-` | subtraction | \n| `*` | multiplication | \n| `/` | quotient | \n| `%` | remainder | \n| `&` | bitwise and | \n| `\\ | ` | bitwise or | \n| `^` | bitwise xor | \n| `&^` | bit clear (and not) | \n| `<<` | left shift | \n| `>>` | right shift | \n\n"
-      },
-      "Comparison": {
-        "raw": "| Operator | Description | \n|---|---|\n| `==` | equal | \n| `!=` | not equal | \n| `<` | less than | \n| `<=` | less than or equal | \n| `>` | greater than | \n| `>=` | greater than or equal | \n\n"
-      },
-      "Logical": {
-        "raw": "| Operator | Description | \n|---|---|\n| `&&` | logical and | \n| `\\ | \\ | ` | logical or | \n| `!` | logical not | \n\n"
-      },
-      "Other": {
-        "raw": "| Operator | Description | \n|---|---|\n| `&` | address of / create pointer | \n| `*` | dereference pointer | \n| `<-` | send / receive operator (see 'Channels' below) | \n\n"
-      }
-    },
-    "Declarations": {
-      "raw": "Type goes after identifier!\n\n```go\nvar foo int // declaration without initialization\nvar foo int = 42 // declaration with initialization\nvar foo, bar int = 42, 1302 // declare and init multiple vars at once\nvar foo = 42 // type omitted, will be inferred\nfoo := 42 // shorthand, only in func bodies, omit var keyword, type is always implicit\nconst constant = \"This is a constant\"\n\n// iota can be used for incrementing numbers, starting from 0\nconst (\n    _ = iota\n    a\n    b\n    c = 1 << iota\n    d\n)\n    fmt.Println(a, b) // 1 2 (0 is skipped)\n    fmt.Println(c, d) // 8 16 (2^3, 2^4)\n```\n\n"
-    },
-    "Functions": {
-      "raw": "```go\n// a simple function\nfunc functionName() {}\n\n// function with parameters (again, types go after identifiers)\nfunc functionName(param1 string, param2 int) {}\n\n// multiple parameters of the same type\nfunc functionName(param1, param2 int) {}\n\n// return type declaration\nfunc functionName() int {\n    return 42\n}\n\n// Can return multiple values at once\nfunc returnMulti() (int, string) {\n    return 42, \"foobar\"\n}\nvar x, str = returnMulti()\n\n// Return multiple named results simply by return\nfunc returnMulti2() (n int, s string) {\n    n = 42\n    s = \"foobar\"\n    // n and s will be returned\n    return\n}\nvar x, str = returnMulti2()\n\n```\n\n",
-      "Functions As Values And Closures": {
-        "raw": "```go\nfunc main() {\n    // assign a function to a name\n    add := func(a, b int) int {\n        return a + b\n    }\n    // use the name to call the function\n    fmt.Println(add(3, 4))\n}\n\n// Closures, lexically scoped: Functions can access values that were\n// in scope when defining the function\nfunc scope() func() int{\n    outer_var := 2\n    foo := func() int { return outer_var}\n    return foo\n}\n\nfunc another_scope() func() int{\n    // won't compile because outer_var and foo not defined in this scope\n    outer_var = 444\n    return foo\n}\n\n\n// Closures\nfunc outer() (func() int, int) {\n    outer_var := 2\n    inner := func() int {\n        outer_var += 99 // outer_var from outer scope is mutated.\n        return outer_var\n    }\n    inner()\n    return inner, outer_var // return inner func and mutated outer_var 101\n}\n```\n\n"
-      },
-      "Variadic Functions": {
-        "raw": "```go\nfunc main() {\n    fmt.Println(adder(1, 2, 3))     // 6\n    fmt.Println(adder(9, 9))    // 18\n\n    nums := []int{10, 20, 30}\n    fmt.Println(adder(nums...))    // 60\n}\n\n// By using ... before the type name of the last parameter you can indicate that it takes zero or more of those parameters.\n// The function is invoked like any other function except we can pass as many arguments as we want.\nfunc adder(args ...int) int {\n    total := 0\n    for _, v := range args { // Iterates over the arguments whatever the number.\n        total += v\n    }\n    return total\n}\n```\n\n"
-      }
-    },
-    "Built-in Types": {
-      "raw": "```\nbool\n\nstring\n\nint  int8  int16  int32  int64\nuint uint8 uint16 uint32 uint64 uintptr\n\nbyte // alias for uint8\n\nrune // alias for int32 ~= a character (Unicode code point) - very Viking\n\nfloat32 float64\n\ncomplex64 complex128\n```\n\n"
-    },
-    "Type Conversions": {
-      "raw": "```go\nvar i int = 42\nvar f float64 = float64(i)\nvar u uint = uint(f)\n\n// alternative syntax\ni := 42\nf := float64(i)\nu := uint(f)\n```\n\n"
-    },
-    "Packages": {
-      "raw": "- Package declaration at top of every source file\n- Executables are in package `main`\n- Convention: package name == last name of import path (import path `math/rand` => package `rand`)\n- Upper case identifier: exported (visible from other packages)\n- Lower case identifier: private (not visible from other packages)\n\n"
-    },
-    "Control structures": {
-      "If": {
-        "raw": "```go\nfunc main() {\n    // Basic one\n    if x > 10 {\n        return x\n    } else if x == 10 {\n        return 10\n    } else {\n        return -x\n    }\n\n    // You can put one statement before the condition\n    if a := b + c; a < 42 {\n        return a\n    } else {\n        return a - 42\n    }\n\n    // Type assertion inside if\n    var val interface{}\n    val = \"foo\"\n    if str, ok := val.(string); ok {\n        fmt.Println(str)\n    }\n}\n```\n\n"
-      },
-      "Loops": {
-        "raw": "```go\n    // There's only `for`, no `while`, no `until`\n    for i := 1; i < 10; i++ {\n    }\n    for ; i < 10;  { // while - loop\n    }\n    for i < 10  { // you can omit semicolons if there is only a condition\n    }\n    for { // you can omit the condition ~ while (true)\n    }\n\n    // use break/continue on current loop\n    // use break/continue with label on outer loop\nhere:\n    for i := 0; i < 2; i++ {\n        for j := i + 1; j < 3; j++ {\n            if i == 0 {\n                continue here\n            }\n            fmt.Println(j)\n            if j == 2 {\n                break\n            }\n        }\n    }\n\nthere:\n    for i := 0; i < 2; i++ {\n        for j := i + 1; j < 3; j++ {\n            if j == 1 {\n                continue\n            }\n            fmt.Println(j)\n            if j == 2 {\n                break there\n            }\n        }\n    }\n```\n\n"
-      },
-      "Switch": {
-        "raw": "```go\n    // switch statement\n    switch operatingSystem {\n    case \"darwin\":\n        fmt.Println(\"Mac OS Hipster\")\n        // cases break automatically, no fallthrough by default\n    case \"linux\":\n        fmt.Println(\"Linux Geek\")\n    default:\n        // Windows, BSD, ...\n        fmt.Println(\"Other\")\n    }\n\n    // as with for and if, you can have an assignment statement before the switch value\n    switch os := runtime.GOOS; os {\n    case \"darwin\": ...\n    }\n\n    // you can also make comparisons in switch cases\n    number := 42\n    switch {\n        case number < 42:\n            fmt.Println(\"Smaller\")\n        case number == 42:\n            fmt.Println(\"Equal\")\n        case number > 42:\n            fmt.Println(\"Greater\")\n    }\n\n    // cases can be presented in comma-separated lists\n    var char byte = '?'\n    switch char {\n        case ' ', '?', '&', '=', '#', '+', '%':\n            fmt.Println(\"Should escape\")\n    }\n```\n\n"
-      }
-    },
-    "Arrays, Slices, Ranges": {
-      "Arrays": {
-        "raw": "```go\nvar a [10]int // declare an int array with length 10. Array length is part of the type!\na[3] = 42     // set elements\ni := a[3]     // read elements\n\n// declare and initialize\nvar a = [2]int{1, 2}\na := [2]int{1, 2} //shorthand\na := [...]int{1, 2} // elipsis -> Compiler figures out array length\n```\n\n"
-      },
-      "Slices": {
-        "raw": "```go\nvar a []int                              // declare a slice - similar to an array, but length is unspecified\nvar a = []int {1, 2, 3, 4}               // declare and initialize a slice (backed by the array given implicitly)\na := []int{1, 2, 3, 4}                   // shorthand\nchars := []string{0:\"a\", 2:\"c\", 1: \"b\"}  // [\"a\", \"b\", \"c\"]\n\nvar b = a[lo:hi]    // creates a slice (view of the array) from index lo to hi-1\nvar b = a[1:4]        // slice from index 1 to 3\nvar b = a[:3]        // missing low index implies 0\nvar b = a[3:]        // missing high index implies len(a)\na =  append(a,17,3)    // append items to slice a\nc := append(a,b...)    // concatenate slices a and b\n\n// create a slice with make\na = make([]byte, 5, 5)    // first arg length, second capacity\na = make([]byte, 5)    // capacity is optional\n\n// create a slice from an array\nx := [3]string{\"Лайка\", \"Белка\", \"Стрелка\"}\ns := x[:] // a slice referencing the storage of x\n```\n\n"
-      },
-      "Operations on Arrays and Slices": {
-        "raw": "`len(a)` gives you the length of an array/a slice. It's a built-in function, not a attribute/method on the array.\n\n\n```go\n// loop over an array/a slice\nfor i, e := range a {\n    // i is the index, e the element\n}\n\n// if you only need e:\nfor _, e := range a {\n    // e is the element\n}\n\n// ...and if you only need the index\nfor i := range a {\n}\n\n// In Go pre-1.4, you'll get a compiler error if you're not using i and e.\n// Go 1.4 introduced a variable-free form, so that you can do this\nfor range time.Tick(time.Second) {\n    // do it once a sec\n}\n\n```\n\n"
-      }
-    },
-    "Maps": {
-      "raw": "```go\nvar m map[string]int\nm = make(map[string]int)\nm[\"key\"] = 42\nfmt.Println(m[\"key\"])\n\ndelete(m, \"key\")\n\nelem, ok := m[\"key\"] // test if key \"key\" is present and retrieve it, if so\n\n// map literal\nvar m = map[string]Vertex{\n    \"Bell Labs\": {40.68433, -74.39967},\n    \"Google\":    {37.42202, -122.08408},\n}\n\n// iterate over map content\nfor key, value := range m {\n}\n\n```\n\n"
-    },
-    "Structs": {
-      "raw": "There are no classes, only structs. Structs can have methods.\n\n```go\n// A struct is a type. It's also a collection of fields\n\n// Declaration\ntype Vertex struct {\n    X, Y int\n}\n\n// Creating\nvar v = Vertex{1, 2}\nvar v = Vertex{X: 1, Y: 2} // Creates a struct by defining values with keys\nvar v = []Vertex{{1,2},{5,2},{5,5}} // Initialize a slice of structs\n\n// Accessing members\nv.X = 4\n\n// You can declare methods on structs. The struct you want to declare the\n// method on (the receiving type) comes between the the func keyword and\n// the method name. The struct is copied on each method call(!)\nfunc (v Vertex) Abs() float64 {\n    return math.Sqrt(v.X*v.X + v.Y*v.Y)\n}\n\n// Call method\nv.Abs()\n\n// For mutating methods, you need to use a pointer (see below) to the Struct\n// as the type. With this, the struct value is not copied for the method call.\nfunc (v *Vertex) add(n float64) {\n    v.X += n\n    v.Y += n\n}\n\n```\n\n**Anonymous structs:**\nCheaper and safer than using `map[string]interface{}`.\n\n```go\npoint := struct {\n    X, Y int\n}{1, 2}\n```\n\n"
-    },
-    "Pointers": {
-      "raw": "```go\np := Vertex{1, 2}  // p is a Vertex\nq := &p            // q is a pointer to a Vertex\nr := &Vertex{1, 2} // r is also a pointer to a Vertex\n\n// The type of a pointer to a Vertex is *Vertex\n\nvar s *Vertex = new(Vertex) // new creates a pointer to a new struct instance\n```\n\n"
-    },
-    "Interfaces": {
-      "raw": "```go\n// interface declaration\ntype Awesomizer interface {\n    Awesomize() string\n}\n\n// types do *not* declare to implement interfaces\ntype Foo struct {}\n\n// instead, types implicitly satisfy an interface if they implement all required methods\nfunc (foo Foo) Awesomize() string {\n    return \"Awesome!\"\n}\n```\n\n"
-    },
-    "Embedding": {
-      "raw": "There is no subclassing in Go. Instead, there is interface and struct embedding.\n\n\n```go\n// ReadWriter implementations must satisfy both Reader and Writer\ntype ReadWriter interface {\n    Reader\n    Writer\n}\n\n// Server exposes all the methods that Logger has\ntype Server struct {\n    Host string\n    Port int\n    *log.Logger\n}\n\n// initialize the embedded type the usual way\nserver := &Server{\"localhost\", 80, log.New(...)}\n\n// methods implemented on the embedded struct are passed through\nserver.Log(...) // calls server.Logger.Log(...)\n\n// the field name of the embedded type is its type name (in this case Logger)\nvar logger *log.Logger = server.Logger\n```\n\n"
-    },
-    "Errors": {
-      "raw": "There is no exception handling. Functions that might produce an error just declare an additional return value of type `Error`. This is the `Error` interface:\n\n```go\ntype error interface {\n    Error() string\n}\n```\n\nA function that might return an error:\n\n```go\nfunc doStuff() (int, error) {\n}\n\nfunc main() {\n    result, err := doStuff()\n    if err != nil {\n        // handle error\n    } else {\n        // all is good, use result\n    }\n}\n```\n\n"
-    }
+  {
+    "title": "Go Cheat Sheet",
+    "subtitle": "Go in a Nutshell",
+    "subsubtitle": "Go in a Nutshell",
+    "raw": "- Imperative language\n- Statically typed\n- Syntax tokens similar to C (but less parentheses and no semicolons) and the structure to Oberon-2\n- Compiles to native code (no JVM)\n- No classes, but structs with methods\n- Interfaces\n- No implementation inheritance. There's [type embedding](http://golang.org/doc/effective%5Fgo.html#embedding), though.\n- Functions are first class citizens\n- Functions can return multiple values\n- Has closures\n- Pointers, but not pointer arithmetic\n- Built-in concurrency primitives: Goroutines and Channels\n\n"
   },
-  "Concurrency": {
-    "Goroutines": {
-      "raw": "Goroutines are lightweight threads (managed by Go, not OS threads). `go f(a, b)` starts a new goroutine which runs `f` (given `f` is a function).\n\n\n```go\n// just a function (which can be later started as a goroutine)\nfunc doStuff(s string) {\n}\n\nfunc main() {\n    // using a named function in a goroutine\n    go doStuff(\"foobar\")\n\n    // using an anonymous inner function in a goroutine\n    go func (x int) {\n        // function body goes here\n    }(42)\n}\n```\n\n"
-    },
-    "Channels": {
-      "raw": "```go\nch := make(chan int) // create a channel of type int\nch <- 42             // Send a value to the channel ch.\nv := <-ch            // Receive a value from ch\n\n// Non-buffered channels block. Read blocks when no value is available, write blocks until there is a read.\n\n// Create a buffered channel. Writing to a buffered channels does not block if less than <buffer size> unread values have been written.\nch := make(chan int, 100)\n\nclose(ch) // closes the channel (only sender should close)\n\n// read from channel and test if it has been closed\nv, ok := <-ch\n\n// if ok is false, channel has been closed\n\n// Read from channel until it is closed\nfor i := range ch {\n    fmt.Println(i)\n}\n\n// select blocks on multiple channel operations, if one unblocks, the corresponding case is executed\nfunc doStuff(channelOut, channelIn chan int) {\n    select {\n    case channelOut <- 42:\n        fmt.Println(\"We could write to channelOut!\")\n    case x := <- channelIn:\n        fmt.Println(\"We could read from channelIn\")\n    case <-time.After(time.Second * 1):\n        fmt.Println(\"timeout\")\n    }\n}\n```\n\n",
-      "Channel Axioms": {
-        "raw": "- A send to a nil channel blocks forever\n\n```go\nvar c chan string\nc <- \"Hello, World!\"\n// fatal error: all goroutines are asleep - deadlock!\n```\n\n- A receive from a nil channel blocks forever\n\n```go\nvar c chan string\nfmt.Println(<-c)\n// fatal error: all goroutines are asleep - deadlock!\n```\n\n- A send to a closed channel panics\n\n```go\nvar c = make(chan string, 1)\nc <- \"Hello, World!\"\nclose(c)\nc <- \"Hello, Panic!\"\n// panic: send on closed channel\n```\n\n- A receive from a closed channel returns the zero value immediately\n\n```go\nvar c = make(chan int, 2)\nc <- 1\nc <- 2\nclose(c)\nfor i := 0; i < 3; i++ {\n    fmt.Printf(\"%d \", <-c)\n}\n// 1 2 0\n```\n\n"
-      }
-    },
-    "Printing": {
-      "raw": "```go\nfmt.Println(\"Hello, 你好, नमस्ते, Привет, ᎣᏏᏲ\") // basic print, plus newline\np := struct { X, Y int }{ 17, 2 }\nfmt.Println( \"My point:\", p, \"x coord=\", p.X ) // print structs, ints, etc\ns := fmt.Sprintln( \"My point:\", p, \"x coord=\", p.X ) // print to string variable\n\nfmt.Printf(\"%d hex:%x bin:%b fp:%f sci:%e\",17,17,17,17.0,17.0) // c-ish format\ns2 := fmt.Sprintf( \"%d %f\", 17, 17.0 ) // formatted print to string variable\n\nhellomsg := `\n \"Hello\" in Chinese is 你好 ('Ni Hao')\n \"Hello\" in Hindi is नमस्ते ('Namaste')\n` // multi-line string literal, using back-tick at beginning and end\n```\n\n"
-    },
-    "Reflection": {
-      "Type Switch": {
-        "raw": "A type switch is like a regular switch statement, but the cases in a type switch specify types (not values), and those values are compared against the type of the value held by the given interface value.\n\n```go\nfunc do(i interface{}) {\n    switch v := i.(type) {\n    case int:\n        fmt.Printf(\"Twice %v is %v\\n\", v, v*2)\n    case string:\n        fmt.Printf(\"%q is %v bytes long\\n\", v, len(v))\n    default:\n        fmt.Printf(\"I don't know about type %T!\\n\", v)\n    }\n}\n\nfunc main() {\n    do(21)\n    do(\"hello\")\n    do(true)\n}\n```\n\n"
-      }
-    }
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Hello World",
+    "subsubtitle": "Hello World",
+    "raw": "File `hello.go`:\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    fmt.Println(\"Hello Go\")\n}\n```\n\n`$ go run hello.go`\n\n\n"
   },
-  "Snippets": {
-    "HTTP Server": {
-      "raw": "```go\npackage main\n\nimport (\n    \"fmt\"\n    \"net/http\"\n)\n\n// define a type for the response\ntype Hello struct{}\n\n// let that type implement the ServeHTTP method (defined in interface http.Handler)\nfunc (h Hello) ServeHTTP(w http.ResponseWriter, r *http.Request) {\n    fmt.Fprint(w, \"Hello!\")\n}\n\nfunc main() {\n    var h Hello\n    http.ListenAndServe(\"localhost:4000\", h)\n}\n\n// Here's the method signature of http.ServeHTTP:\n// type Handler interface {\n//     ServeHTTP(w http.ResponseWriter, r *http.Request)\n// }\n```\n\n"
-    }
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Operators",
+    "subsubtitle": "Arithmetic",
+    "raw": "| Operator | Description | \n|---|---|\n| `+` | addition | \n| `-` | subtraction | \n| `*` | multiplication | \n| `/` | quotient | \n| `%` | remainder | \n| `&` | bitwise and | \n| `\\ | ` | bitwise or | \n| `^` | bitwise xor | \n| `&^` | bit clear (and not) | \n| `<<` | left shift | \n| `>>` | right shift | \n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Operators",
+    "subsubtitle": "Comparison",
+    "raw": "| Operator | Description | \n|---|---|\n| `==` | equal | \n| `!=` | not equal | \n| `<` | less than | \n| `<=` | less than or equal | \n| `>` | greater than | \n| `>=` | greater than or equal | \n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Operators",
+    "subsubtitle": "Logical",
+    "raw": "| Operator | Description | \n|---|---|\n| `&&` | logical and | \n| `\\ | \\ | ` | logical or | \n| `!` | logical not | \n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Operators",
+    "subsubtitle": "Other",
+    "raw": "| Operator | Description | \n|---|---|\n| `&` | address of / create pointer | \n| `*` | dereference pointer | \n| `<-` | send / receive operator (see 'Channels' below) | \n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Declarations",
+    "subsubtitle": "Declarations",
+    "raw": "Type goes after identifier!\n\n```go\nvar foo int // declaration without initialization\nvar foo int = 42 // declaration with initialization\nvar foo, bar int = 42, 1302 // declare and init multiple vars at once\nvar foo = 42 // type omitted, will be inferred\nfoo := 42 // shorthand, only in func bodies, omit var keyword, type is always implicit\nconst constant = \"This is a constant\"\n\n// iota can be used for incrementing numbers, starting from 0\nconst (\n    _ = iota\n    a\n    b\n    c = 1 << iota\n    d\n)\n    fmt.Println(a, b) // 1 2 (0 is skipped)\n    fmt.Println(c, d) // 8 16 (2^3, 2^4)\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Functions",
+    "subsubtitle": "Functions",
+    "raw": "```go\n// a simple function\nfunc functionName() {}\n\n// function with parameters (again, types go after identifiers)\nfunc functionName(param1 string, param2 int) {}\n\n// multiple parameters of the same type\nfunc functionName(param1, param2 int) {}\n\n// return type declaration\nfunc functionName() int {\n    return 42\n}\n\n// Can return multiple values at once\nfunc returnMulti() (int, string) {\n    return 42, \"foobar\"\n}\nvar x, str = returnMulti()\n\n// Return multiple named results simply by return\nfunc returnMulti2() (n int, s string) {\n    n = 42\n    s = \"foobar\"\n    // n and s will be returned\n    return\n}\nvar x, str = returnMulti2()\n\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Functions",
+    "subsubtitle": "Functions As Values And Closures",
+    "raw": "```go\nfunc main() {\n    // assign a function to a name\n    add := func(a, b int) int {\n        return a + b\n    }\n    // use the name to call the function\n    fmt.Println(add(3, 4))\n}\n\n// Closures, lexically scoped: Functions can access values that were\n// in scope when defining the function\nfunc scope() func() int{\n    outer_var := 2\n    foo := func() int { return outer_var}\n    return foo\n}\n\nfunc another_scope() func() int{\n    // won't compile because outer_var and foo not defined in this scope\n    outer_var = 444\n    return foo\n}\n\n\n// Closures\nfunc outer() (func() int, int) {\n    outer_var := 2\n    inner := func() int {\n        outer_var += 99 // outer_var from outer scope is mutated.\n        return outer_var\n    }\n    inner()\n    return inner, outer_var // return inner func and mutated outer_var 101\n}\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Functions",
+    "subsubtitle": "Variadic Functions",
+    "raw": "```go\nfunc main() {\n    fmt.Println(adder(1, 2, 3))     // 6\n    fmt.Println(adder(9, 9))    // 18\n\n    nums := []int{10, 20, 30}\n    fmt.Println(adder(nums...))    // 60\n}\n\n// By using ... before the type name of the last parameter you can indicate that it takes zero or more of those parameters.\n// The function is invoked like any other function except we can pass as many arguments as we want.\nfunc adder(args ...int) int {\n    total := 0\n    for _, v := range args { // Iterates over the arguments whatever the number.\n        total += v\n    }\n    return total\n}\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Built-in Types",
+    "subsubtitle": "Built-in Types",
+    "raw": "```\nbool\n\nstring\n\nint  int8  int16  int32  int64\nuint uint8 uint16 uint32 uint64 uintptr\n\nbyte // alias for uint8\n\nrune // alias for int32 ~= a character (Unicode code point) - very Viking\n\nfloat32 float64\n\ncomplex64 complex128\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Type Conversions",
+    "subsubtitle": "Type Conversions",
+    "raw": "```go\nvar i int = 42\nvar f float64 = float64(i)\nvar u uint = uint(f)\n\n// alternative syntax\ni := 42\nf := float64(i)\nu := uint(f)\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Packages",
+    "subsubtitle": "Packages",
+    "raw": "- Package declaration at top of every source file\n- Executables are in package `main`\n- Convention: package name == last name of import path (import path `math/rand` => package `rand`)\n- Upper case identifier: exported (visible from other packages)\n- Lower case identifier: private (not visible from other packages)\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Control structures",
+    "subsubtitle": "If",
+    "raw": "```go\nfunc main() {\n    // Basic one\n    if x > 10 {\n        return x\n    } else if x == 10 {\n        return 10\n    } else {\n        return -x\n    }\n\n    // You can put one statement before the condition\n    if a := b + c; a < 42 {\n        return a\n    } else {\n        return a - 42\n    }\n\n    // Type assertion inside if\n    var val interface{}\n    val = \"foo\"\n    if str, ok := val.(string); ok {\n        fmt.Println(str)\n    }\n}\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Control structures",
+    "subsubtitle": "Loops",
+    "raw": "```go\n    // There's only `for`, no `while`, no `until`\n    for i := 1; i < 10; i++ {\n    }\n    for ; i < 10;  { // while - loop\n    }\n    for i < 10  { // you can omit semicolons if there is only a condition\n    }\n    for { // you can omit the condition ~ while (true)\n    }\n\n    // use break/continue on current loop\n    // use break/continue with label on outer loop\nhere:\n    for i := 0; i < 2; i++ {\n        for j := i + 1; j < 3; j++ {\n            if i == 0 {\n                continue here\n            }\n            fmt.Println(j)\n            if j == 2 {\n                break\n            }\n        }\n    }\n\nthere:\n    for i := 0; i < 2; i++ {\n        for j := i + 1; j < 3; j++ {\n            if j == 1 {\n                continue\n            }\n            fmt.Println(j)\n            if j == 2 {\n                break there\n            }\n        }\n    }\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Control structures",
+    "subsubtitle": "Switch",
+    "raw": "```go\n    // switch statement\n    switch operatingSystem {\n    case \"darwin\":\n        fmt.Println(\"Mac OS Hipster\")\n        // cases break automatically, no fallthrough by default\n    case \"linux\":\n        fmt.Println(\"Linux Geek\")\n    default:\n        // Windows, BSD, ...\n        fmt.Println(\"Other\")\n    }\n\n    // as with for and if, you can have an assignment statement before the switch value\n    switch os := runtime.GOOS; os {\n    case \"darwin\": ...\n    }\n\n    // you can also make comparisons in switch cases\n    number := 42\n    switch {\n        case number < 42:\n            fmt.Println(\"Smaller\")\n        case number == 42:\n            fmt.Println(\"Equal\")\n        case number > 42:\n            fmt.Println(\"Greater\")\n    }\n\n    // cases can be presented in comma-separated lists\n    var char byte = '?'\n    switch char {\n        case ' ', '?', '&', '=', '#', '+', '%':\n            fmt.Println(\"Should escape\")\n    }\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Arrays, Slices, Ranges",
+    "subsubtitle": "Arrays",
+    "raw": "```go\nvar a [10]int // declare an int array with length 10. Array length is part of the type!\na[3] = 42     // set elements\ni := a[3]     // read elements\n\n// declare and initialize\nvar a = [2]int{1, 2}\na := [2]int{1, 2} //shorthand\na := [...]int{1, 2} // elipsis -> Compiler figures out array length\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Arrays, Slices, Ranges",
+    "subsubtitle": "Slices",
+    "raw": "```go\nvar a []int                              // declare a slice - similar to an array, but length is unspecified\nvar a = []int {1, 2, 3, 4}               // declare and initialize a slice (backed by the array given implicitly)\na := []int{1, 2, 3, 4}                   // shorthand\nchars := []string{0:\"a\", 2:\"c\", 1: \"b\"}  // [\"a\", \"b\", \"c\"]\n\nvar b = a[lo:hi]    // creates a slice (view of the array) from index lo to hi-1\nvar b = a[1:4]        // slice from index 1 to 3\nvar b = a[:3]        // missing low index implies 0\nvar b = a[3:]        // missing high index implies len(a)\na =  append(a,17,3)    // append items to slice a\nc := append(a,b...)    // concatenate slices a and b\n\n// create a slice with make\na = make([]byte, 5, 5)    // first arg length, second capacity\na = make([]byte, 5)    // capacity is optional\n\n// create a slice from an array\nx := [3]string{\"Лайка\", \"Белка\", \"Стрелка\"}\ns := x[:] // a slice referencing the storage of x\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Arrays, Slices, Ranges",
+    "subsubtitle": "Operations on Arrays and Slices",
+    "raw": "`len(a)` gives you the length of an array/a slice. It's a built-in function, not a attribute/method on the array.\n\n\n```go\n// loop over an array/a slice\nfor i, e := range a {\n    // i is the index, e the element\n}\n\n// if you only need e:\nfor _, e := range a {\n    // e is the element\n}\n\n// ...and if you only need the index\nfor i := range a {\n}\n\n// In Go pre-1.4, you'll get a compiler error if you're not using i and e.\n// Go 1.4 introduced a variable-free form, so that you can do this\nfor range time.Tick(time.Second) {\n    // do it once a sec\n}\n\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Maps",
+    "subsubtitle": "Maps",
+    "raw": "```go\nvar m map[string]int\nm = make(map[string]int)\nm[\"key\"] = 42\nfmt.Println(m[\"key\"])\n\ndelete(m, \"key\")\n\nelem, ok := m[\"key\"] // test if key \"key\" is present and retrieve it, if so\n\n// map literal\nvar m = map[string]Vertex{\n    \"Bell Labs\": {40.68433, -74.39967},\n    \"Google\":    {37.42202, -122.08408},\n}\n\n// iterate over map content\nfor key, value := range m {\n}\n\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Structs",
+    "subsubtitle": "Structs",
+    "raw": "There are no classes, only structs. Structs can have methods.\n\n```go\n// A struct is a type. It's also a collection of fields\n\n// Declaration\ntype Vertex struct {\n    X, Y int\n}\n\n// Creating\nvar v = Vertex{1, 2}\nvar v = Vertex{X: 1, Y: 2} // Creates a struct by defining values with keys\nvar v = []Vertex{{1,2},{5,2},{5,5}} // Initialize a slice of structs\n\n// Accessing members\nv.X = 4\n\n// You can declare methods on structs. The struct you want to declare the\n// method on (the receiving type) comes between the the func keyword and\n// the method name. The struct is copied on each method call(!)\nfunc (v Vertex) Abs() float64 {\n    return math.Sqrt(v.X*v.X + v.Y*v.Y)\n}\n\n// Call method\nv.Abs()\n\n// For mutating methods, you need to use a pointer (see below) to the Struct\n// as the type. With this, the struct value is not copied for the method call.\nfunc (v *Vertex) add(n float64) {\n    v.X += n\n    v.Y += n\n}\n\n```\n\n**Anonymous structs:**\nCheaper and safer than using `map[string]interface{}`.\n\n```go\npoint := struct {\n    X, Y int\n}{1, 2}\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Pointers",
+    "subsubtitle": "Pointers",
+    "raw": "```go\np := Vertex{1, 2}  // p is a Vertex\nq := &p            // q is a pointer to a Vertex\nr := &Vertex{1, 2} // r is also a pointer to a Vertex\n\n// The type of a pointer to a Vertex is *Vertex\n\nvar s *Vertex = new(Vertex) // new creates a pointer to a new struct instance\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Interfaces",
+    "subsubtitle": "Interfaces",
+    "raw": "```go\n// interface declaration\ntype Awesomizer interface {\n    Awesomize() string\n}\n\n// types do *not* declare to implement interfaces\ntype Foo struct {}\n\n// instead, types implicitly satisfy an interface if they implement all required methods\nfunc (foo Foo) Awesomize() string {\n    return \"Awesome!\"\n}\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Embedding",
+    "subsubtitle": "Embedding",
+    "raw": "There is no subclassing in Go. Instead, there is interface and struct embedding.\n\n\n```go\n// ReadWriter implementations must satisfy both Reader and Writer\ntype ReadWriter interface {\n    Reader\n    Writer\n}\n\n// Server exposes all the methods that Logger has\ntype Server struct {\n    Host string\n    Port int\n    *log.Logger\n}\n\n// initialize the embedded type the usual way\nserver := &Server{\"localhost\", 80, log.New(...)}\n\n// methods implemented on the embedded struct are passed through\nserver.Log(...) // calls server.Logger.Log(...)\n\n// the field name of the embedded type is its type name (in this case Logger)\nvar logger *log.Logger = server.Logger\n```\n\n"
+  },
+  {
+    "title": "Basic Syntax",
+    "subtitle": "Errors",
+    "subsubtitle": "Errors",
+    "raw": "There is no exception handling. Functions that might produce an error just declare an additional return value of type `Error`. This is the `Error` interface:\n\n```go\ntype error interface {\n    Error() string\n}\n```\n\nA function that might return an error:\n\n```go\nfunc doStuff() (int, error) {\n}\n\nfunc main() {\n    result, err := doStuff()\n    if err != nil {\n        // handle error\n    } else {\n        // all is good, use result\n    }\n}\n```\n\n"
+  },
+  {
+    "title": "Concurrency",
+    "subtitle": "Goroutines",
+    "subsubtitle": "Goroutines",
+    "raw": "Goroutines are lightweight threads (managed by Go, not OS threads). `go f(a, b)` starts a new goroutine which runs `f` (given `f` is a function).\n\n\n```go\n// just a function (which can be later started as a goroutine)\nfunc doStuff(s string) {\n}\n\nfunc main() {\n    // using a named function in a goroutine\n    go doStuff(\"foobar\")\n\n    // using an anonymous inner function in a goroutine\n    go func (x int) {\n        // function body goes here\n    }(42)\n}\n```\n\n"
+  },
+  {
+    "title": "Concurrency",
+    "subtitle": "Channels",
+    "subsubtitle": "Channels",
+    "raw": "```go\nch := make(chan int) // create a channel of type int\nch <- 42             // Send a value to the channel ch.\nv := <-ch            // Receive a value from ch\n\n// Non-buffered channels block. Read blocks when no value is available, write blocks until there is a read.\n\n// Create a buffered channel. Writing to a buffered channels does not block if less than <buffer size> unread values have been written.\nch := make(chan int, 100)\n\nclose(ch) // closes the channel (only sender should close)\n\n// read from channel and test if it has been closed\nv, ok := <-ch\n\n// if ok is false, channel has been closed\n\n// Read from channel until it is closed\nfor i := range ch {\n    fmt.Println(i)\n}\n\n// select blocks on multiple channel operations, if one unblocks, the corresponding case is executed\nfunc doStuff(channelOut, channelIn chan int) {\n    select {\n    case channelOut <- 42:\n        fmt.Println(\"We could write to channelOut!\")\n    case x := <- channelIn:\n        fmt.Println(\"We could read from channelIn\")\n    case <-time.After(time.Second * 1):\n        fmt.Println(\"timeout\")\n    }\n}\n```\n\n"
+  },
+  {
+    "title": "Concurrency",
+    "subtitle": "Channels",
+    "subsubtitle": "Channel Axioms",
+    "raw": "- A send to a nil channel blocks forever\n\n```go\nvar c chan string\nc <- \"Hello, World!\"\n// fatal error: all goroutines are asleep - deadlock!\n```\n\n- A receive from a nil channel blocks forever\n\n```go\nvar c chan string\nfmt.Println(<-c)\n// fatal error: all goroutines are asleep - deadlock!\n```\n\n- A send to a closed channel panics\n\n```go\nvar c = make(chan string, 1)\nc <- \"Hello, World!\"\nclose(c)\nc <- \"Hello, Panic!\"\n// panic: send on closed channel\n```\n\n- A receive from a closed channel returns the zero value immediately\n\n```go\nvar c = make(chan int, 2)\nc <- 1\nc <- 2\nclose(c)\nfor i := 0; i < 3; i++ {\n    fmt.Printf(\"%d \", <-c)\n}\n// 1 2 0\n```\n\n"
+  },
+  {
+    "title": "Concurrency",
+    "subtitle": "Printing",
+    "subsubtitle": "Printing",
+    "raw": "```go\nfmt.Println(\"Hello, 你好, नमस्ते, Привет, ᎣᏏᏲ\") // basic print, plus newline\np := struct { X, Y int }{ 17, 2 }\nfmt.Println( \"My point:\", p, \"x coord=\", p.X ) // print structs, ints, etc\ns := fmt.Sprintln( \"My point:\", p, \"x coord=\", p.X ) // print to string variable\n\nfmt.Printf(\"%d hex:%x bin:%b fp:%f sci:%e\",17,17,17,17.0,17.0) // c-ish format\ns2 := fmt.Sprintf( \"%d %f\", 17, 17.0 ) // formatted print to string variable\n\nhellomsg := `\n \"Hello\" in Chinese is 你好 ('Ni Hao')\n \"Hello\" in Hindi is नमस्ते ('Namaste')\n` // multi-line string literal, using back-tick at beginning and end\n```\n\n"
+  },
+  {
+    "title": "Concurrency",
+    "subtitle": "Reflection",
+    "subsubtitle": "Type Switch",
+    "raw": "A type switch is like a regular switch statement, but the cases in a type switch specify types (not values), and those values are compared against the type of the value held by the given interface value.\n\n```go\nfunc do(i interface{}) {\n    switch v := i.(type) {\n    case int:\n        fmt.Printf(\"Twice %v is %v\\n\", v, v*2)\n    case string:\n        fmt.Printf(\"%q is %v bytes long\\n\", v, len(v))\n    default:\n        fmt.Printf(\"I don't know about type %T!\\n\", v)\n    }\n}\n\nfunc main() {\n    do(21)\n    do(\"hello\")\n    do(true)\n}\n```\n\n"
+  },
+  {
+    "title": "Snippets",
+    "subtitle": "HTTP Server",
+    "subsubtitle": "HTTP Server",
+    "raw": "```go\npackage main\n\nimport (\n    \"fmt\"\n    \"net/http\"\n)\n\n// define a type for the response\ntype Hello struct{}\n\n// let that type implement the ServeHTTP method (defined in interface http.Handler)\nfunc (h Hello) ServeHTTP(w http.ResponseWriter, r *http.Request) {\n    fmt.Fprint(w, \"Hello!\")\n}\n\nfunc main() {\n    var h Hello\n    http.ListenAndServe(\"localhost:4000\", h)\n}\n\n// Here's the method signature of http.ServeHTTP:\n// type Handler interface {\n//     ServeHTTP(w http.ResponseWriter, r *http.Request)\n// }\n```\n\n"
   }
-}
+]

@@ -13,12 +13,13 @@ const Card = props => (
     </header>
     <div className="card-content">
       <div className="content">
-        {Object.keys(props.item).map((item, key) => (
+        {Object.keys(props.item).map((subtitle, key) => (
           <ol key={key} type="1">
             <ul>
-              {item}
-              <pre>Test</pre>
-              <MarkdownContent item={props.item[item]} />
+              <p>
+                <b>{subtitle}</b>
+              </p>
+              <MarkdownContent item={props.item[subtitle]} />
             </ul>
           </ol>
         ))}
