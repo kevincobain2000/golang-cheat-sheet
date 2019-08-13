@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import Card from "../components/Card";
-import Items from "../variables/Items";
 import Fuse from "fuse.js";
 
 const Index = props => {
@@ -19,8 +18,11 @@ const Index = props => {
       }
     ]
   };
+  console.log(props.items);
+
   let fuse = new Fuse(props.items, options);
   let filterItems = name => {
+    console.log(props.items);
     let items = name && name.trim() ? fuse.search(name) : [...props.items];
     setItems(items);
   };
@@ -48,9 +50,9 @@ const Index = props => {
         </fieldset>
       </form>
       <div className="columns is-multiline">
-        {items.map((icon, key) => (
+        {Object.keys(items).map((title, key) => (
           <div className="column is-12" key={key}>
-            <Card icon={icon} />
+            <Card title={title} item={items[title]} />
           </div>
         ))}
       </div>
@@ -59,7 +61,7 @@ const Index = props => {
 };
 
 Index.getInitialProps = () => {
-  const items = Items;
+  const items = require("../static/Syntax.json");
   return { items };
 };
 

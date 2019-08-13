@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
         <body>
           <a
             className="github-fork-ribbon"
-            href="https://github.com/kevincobain2000/google-cloud-icons"
+            href="https://github.com/kevincobain2000/golang-cheat-sheet"
             data-ribbon="Fork me on GitHub"
             title="Fork me on GitHub"
           >

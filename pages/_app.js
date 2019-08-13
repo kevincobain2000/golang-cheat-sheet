@@ -19,7 +19,7 @@ export default class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>Google Cloud Icons Search</title>
+          <title>Go Lang Cheat Sheet</title>
           <link
             rel="shortcut icon"
             type="image/x-icon"
@@ -28,7 +28,10 @@ export default class MyApp extends App {
           <meta name="description" content="Golang cheat sheet" />
           <meta name="author" content="Pulkit Kathuria" />
           <meta property="og:title" content="Pulkit Kathuria" />
-          <meta property="og:description" content="Golang cheat sheet. An overview of Go syntax and features" />
+          <meta
+            property="og:description"
+            content="Golang cheat sheet. An overview of Go syntax and features"
+          />
           <meta property="og:image" content="./static/gcp.png" />
           <meta
             property="og:url"

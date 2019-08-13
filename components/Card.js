@@ -1,9 +1,10 @@
 import React from "react";
+import MarkdownContent from "../components/MarkdownContent";
 
 const Card = props => (
   <div className="card">
     <header className="card-header">
-      <b className="card-header-title">{props.icon.name}</b>
+      <b className="card-header-title">{props.title}</b>
       <a href="#" className="card-header-icon" aria-label="more options">
         <span className="icon">
           <i className="fas fa-angle-down" aria-hidden="true" />
@@ -12,9 +13,13 @@ const Card = props => (
     </header>
     <div className="card-content">
       <div className="content">
-        {props.icon.contents.map((line, key) => (
+        {Object.keys(props.item).map((item, key) => (
           <ol key={key} type="1">
-            <ul>{line}</ul>
+            <ul>
+              {item}
+              <pre>Test</pre>
+              <MarkdownContent item={props.item[item]} />
+            </ul>
           </ol>
         ))}
       </div>

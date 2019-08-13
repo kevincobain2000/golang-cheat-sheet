@@ -1,1 +1,0 @@
-The Products logos contained in this icon library may be used freely and without permission to accurately reference Google's technology and tools, for instance in books or architecture diagrams.

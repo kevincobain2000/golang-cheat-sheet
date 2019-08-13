@@ -2,9 +2,8 @@
 
 Search google cloud icons portal.
 
-https://kevincobain2000.github.io/google-cloud-icons
+https://kevincobain2000.github.io/golang-cheat-sheet
 
-Icons are available for download from https://cloud.google.com/icons/
 
 ```bash
 npm install

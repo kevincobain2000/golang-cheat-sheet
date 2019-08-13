@@ -6,4 +6,12 @@ let exports2 = {
   // assetPrefix: "/list-of-anything/"
 };
 
-module.exports = { ...exports1, ...exports2 };
+let exports3 = {
+  exportPathMap: () => {
+    return {
+      "/": { page: "/" }
+      // "/post/:id": { page: "/post", id: { id } }
+    };
+  }
+};
+module.exports = { ...exports1, ...exports2, ...exports3 };
