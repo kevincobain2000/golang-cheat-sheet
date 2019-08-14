@@ -9,10 +9,10 @@ const Layout = (props: any): JSX.Element => {
     <div className="container is-widescreen is-mobile">
       <h1>
         <img className="icon-image" src="./static/logo.png" alt="logo icon" />
-        <span className="ml-4">Go lang Cheat Sheet</span>
+        <b className="ml-4">Go lang Cheat Sheet</b>
       </h1>
       <p>Simple and easy way to navigate through the cheatsheet</p>
-      <p className="mb-10 nav-links">
+      <p className="mt-5 mb-10 nav-links">
         <Link as="./" href="/">
           <a title="Blog">Go Lang</a>
         </Link>{" "}
