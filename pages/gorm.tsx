@@ -2,75 +2,31 @@ import React, { useState } from "react";
 import Layout from "../components/Layout";
 import Card from "../components/Card";
 import Fuse from "fuse.js";
-import Link from "next/link";
+import FuseOptions from "../variables/fuse";
 
 const Gorm = (props: any) => {
   const [items, setItems] = useState(props.items);
 
-  let options: object = {
-    keys: [
-      {
-        name: "title",
-        weight: 0.2
-      },
-      {
-        name: "subtitle",
-        weight: 0.3
-      },
-      {
-        name: "subsubtitle",
-        weight: 0.3
-      },
-      {
-        name: "raw",
-        weight: 0.2
-      }
-    ]
-  };
-
-  let fuse = new Fuse(props.items, options);
+  let fuse = new Fuse(props.items, FuseOptions);
 
   let handleInputChange = (name: string): void => {
     let items = name && name.trim() ? fuse.search(name) : [...props.items];
     return setItems(items);
   };
 
-  const handleSubmit = (event: any): void => {
-    event.preventDefault();
-  };
-
   return (
     <Layout>
-      <h1>
-        <img className="icon-image" src="./static/logo.png" alt="logo icon" />
-        <span className="ml-4">Go lang Cheat Sheet</span>
-      </h1>
-      <p>Simple and easy way to navigate through the cheatsheet</p>
-      <p>
-        <a className="color-link" href="">
-          Golang
-        </a>{" "}
-        |{" "}
-        <Link href="/post">
-          <a className="color-link">Gorm</a>
-        </Link>
-      </p>
+      <input
+        autoFocus
+        type="text"
+        className="input is-info"
+        placeholder="Type here..."
+        onChange={e => handleInputChange(e.target.value)}
+      />
       <br />
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <input
-            autoFocus
-            type="text"
-            className="input is-info"
-            placeholder="Type here..."
-            onChange={e => handleInputChange(e.target.value)}
-          />
-          <br />
-          <br />
-        </fieldset>
-      </form>
+      <br />
       <div className="columns is-multiline">
-        {items.map((item, key) => (
+        {items.map((item: any, key: React.ReactText) => (
           <div className="column is-12" key={key}>
             <Card item={item} />
           </div>
@@ -81,7 +37,7 @@ const Gorm = (props: any) => {
 };
 
 Gorm.getInitialProps = (): Object => {
-  const items = require("../static/Golang.json");
+  const items = require("../static/Gorm.md.json");
   return { items };
 };
 

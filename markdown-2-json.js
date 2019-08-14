@@ -4,12 +4,13 @@ var md2json = require("md-2-json");
 
 let fs = require("fs");
 
-let jsonObjOut = [];
-
-let filenames = ["Cheatsheets/Golang.md"];
+let filenames = ["Golang.md", "Gorm.md"];
 
 for (let filename of filenames) {
-  let content = fs.readFileSync(process.cwd() + "/" + filename).toString();
+  let jsonObjOut = [];
+  let content = fs
+    .readFileSync(process.cwd() + "/Cheatsheets/" + filename)
+    .toString();
 
   let contentItems = md2json.parse(content);
 
@@ -40,8 +41,14 @@ for (let filename of filenames) {
   }
   let json = JSON.stringify(jsonObjOut);
 
-  fs.writeFile("static/Golang.json", json, err => {
+  fs.writeFile("static/" + filename + ".json", json, err => {
     if (err) console.log(err);
-    console.log("Successfully Written Markdown to Json File.");
+    console.log(
+      "Successfully Written /Cheatsheets/" +
+        filename +
+        " to /static/" +
+        filename +
+        ".json File."
+    );
   });
 }
