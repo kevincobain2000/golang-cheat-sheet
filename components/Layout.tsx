@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-
 import "../css/styles.scss";
 import "../css/styles.css";
 

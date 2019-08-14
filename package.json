@@ -29,12 +29,16 @@
     "md-2-json": "^1.0.6",
     "morgan": "^1.9.1",
     "next": "^9.0.3",
+    "next-compose-plugins": "^2.2.0",
     "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-ga": "^2.6.0",
     "react-markdown": "^4.1.0",
+    "react-redux": "^7.1.0",
     "react-syntax-highlighter": "^11.0.2",
+    "redux": "^4.0.4",
     "styled-components": "^4.3.2",
     "stylelint": "^10.1.0",
     "stylelint-scss": "^3.9.3"
@@ -45,6 +49,7 @@
     "eslint": "^6.1.0",
     "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-react": "^7.14.3",
+    "redux-devtools": "^3.5.0",
     "typescript": "^3.5.3"
   }
 }

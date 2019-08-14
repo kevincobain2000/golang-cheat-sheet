@@ -15,7 +15,6 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-40862413-1"
