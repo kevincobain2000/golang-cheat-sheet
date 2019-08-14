@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
-    "deploy": "npm run export; ./deploy.sh",
+    "deploy": "ASSET_PREFIX='/golang-cheat-sheet/' npm run build;npm run export; ./deploy.sh",
     "markdown": "node markdown-2-json.js",
     "build": "npm run markdown; next build",
     "export": "next build && next export -o dist/",
