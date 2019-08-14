@@ -5,7 +5,6 @@ import "../css/styles.scss";
 import "../css/styles.css";
 
 const Layout = (props: any): JSX.Element => {
-  console.log(process.env.NODE_ENV);
   return (
     <div className="container is-widescreen is-mobile">
       <h1>

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
+    "pre-deploy": "export GITHUB_PAGES_PREFIX='/golang-cheat-sheet/'; npm run build; npm run export",
     "deploy": "export GITHUB_PAGES_PREFIX='/golang-cheat-sheet/'; npm run build; npm run export; ./deploy.sh",
     "markdown": "node markdown-2-json.js",
     "build": "npm run markdown; next build",
