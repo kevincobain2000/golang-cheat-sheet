@@ -13,15 +13,15 @@ const Layout = (props: any): JSX.Element => {
       </h1>
       <p>Simple and easy way to navigate through the cheatsheet</p>
       <p className="mb-10 nav-links">
-        <Link href="/golang-cheat-sheet/">
+        <Link as="./" href="/">
           <a title="Blog">Go Lang</a>
         </Link>{" "}
         |{" "}
-        <Link href="/golang-cheat-sheet/gorm">
+        <Link as="./gorm" href="/gorm">
           <a title="Gorm">GORM</a>
         </Link>{" "}
         |{" "}
-        <Link href="/golang-cheat-sheet/credits">
+        <Link as="./credits" href="/credits">
           <a title="Credits">CREDITS</a>
         </Link>
       </p>
