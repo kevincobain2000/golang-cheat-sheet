@@ -4,7 +4,14 @@ var md2json = require("md-2-json");
 
 let fs = require("fs");
 
-let filenames = ["Golang.md", "Gorm.md"];
+// let filenames = ["Golang.md", "Gorm.md", "Credits.md"];
+let filenames = [];
+fs.readdirSync("./Cheatsheets/").forEach(file => {
+  console.log(file);
+  if (file.endsWith(".md")) {
+    filenames.push(file);
+  }
+});
 
 for (let filename of filenames) {
   let jsonObjOut = [];
@@ -41,12 +48,12 @@ for (let filename of filenames) {
   }
   let json = JSON.stringify(jsonObjOut);
 
-  fs.writeFile("static/" + filename + ".json", json, err => {
+  fs.writeFile("Cheatsheets/" + filename + ".json", json, err => {
     if (err) console.log(err);
     console.log(
-      "Successfully Written /Cheatsheets/" +
+      "Successfully writter ./Cheatsheets/" +
         filename +
-        " to /static/" +
+        " to ./Cheatsheets/" +
         filename +
         ".json File."
     );

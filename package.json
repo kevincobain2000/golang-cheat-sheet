@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
-    "deploy": "ASSET_PREFIX='/golang-cheat-sheet/' npm run build;npm run export; ./deploy.sh",
+    "deploy": "export GITHUB_PAGES_PREFIX='/golang-cheat-sheet/'; npm run build; npm run export; ./deploy.sh",
     "markdown": "node markdown-2-json.js",
     "build": "npm run markdown; next build",
-    "export": "next build && next export -o dist/",
+    "export": "next export -o dist/",
     "start": "NODE_ENV=production node server.js",
     "lint": "eslint -c .eslintrc.json --ext .js,.ts,.tsx {pages,components}/**",
     "stylelint": "stylelint.js --config=.stylelintrc.json css/*",

@@ -37,7 +37,7 @@ const Gorm = (props: any) => {
 };
 
 Gorm.getInitialProps = (): Object => {
-  const items = require("../static/Gorm.md.json");
+  const items = require("../Cheatsheets/Gorm.md.json");
   return { items };
 };
 

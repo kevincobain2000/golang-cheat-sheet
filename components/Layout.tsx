@@ -11,15 +11,7 @@ const Layout = (props: any): JSX.Element => (
       <span className="ml-4">Go lang Cheat Sheet</span>
     </h1>
     <p>Simple and easy way to navigate through the cheatsheet</p>
-    <p>
-      <Link href="/">
-        <a className="color-link">Golang</a>
-      </Link>{" "}
-      |{" "}
-      <Link href="/gorm">
-        <a className="color-link">Gorm</a>
-      </Link>
-    </p>
+    <p className="mb-10" />
     <section>{props.children}</section>
   </div>
 );

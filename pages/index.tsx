@@ -37,7 +37,7 @@ const Index = (props: any) => {
 };
 
 Index.getInitialProps = (): Object => {
-  const items = require("../static/Golang.md.json");
+  const items = require("../Cheatsheets/Golang.md.json");
   return { items };
 };
 
