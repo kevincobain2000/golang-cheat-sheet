@@ -7,7 +7,6 @@ let fs = require("fs");
 // let filenames = ["Golang.md", "Gorm.md", "Credits.md"];
 let filenames = [];
 fs.readdirSync("./Cheatsheets/").forEach(file => {
-  console.log(file);
   if (file.endsWith(".md")) {
     filenames.push(file);
   }

@@ -25,7 +25,14 @@ $input-border-color: transparent;
 $input-shadow: none;
 $link: $pink;
 
-@import "../node_modules/bulma/bulma.sass";
+// @import "../node_modules/bulma/bulma.sass";
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+// @import "../node_modules/bulma/sass/layout/_all.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/components/card.sass";
 
 body {
   -webkit-font-smoothing: antialiased;

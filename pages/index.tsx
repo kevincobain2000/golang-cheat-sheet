@@ -3,6 +3,8 @@ import Layout from "../components/Layout";
 import Card from "../components/Card";
 import Fuse from "fuse.js";
 import FuseOptions from "../variables/fuse";
+import { connect } from "react-redux";
+import { getMarkdownJson } from "../store/actions/markdownActions";
 
 const Index = (props: any) => {
   const [items, setItems] = useState(props.items);
@@ -36,9 +38,18 @@ const Index = (props: any) => {
   );
 };
 
-Index.getInitialProps = async (): Promise<any> => {
-  const items = require("../Cheatsheets/json/Golang.md.json");
+// Index.getInitialProps = async (): Promise<any> => {
+//   const items = require("../Cheatsheets/json/Golang.md.json");
+//   return { items };
+// };
+// export default Index;
+
+Index.getInitialProps = async (ctx: any) => {
+  const { items } = await ctx.store.dispatch(getMarkdownJson("Golang"));
   return { items };
 };
 
-export default Index;
+const mapStateToProps = (state: any) => ({
+  items: state.usersReducer.items
+});
+export default connect(mapStateToProps)(Index);

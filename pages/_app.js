@@ -1,8 +1,11 @@
 import React from "react";
 import App, { Container } from "next/app";
 import Head from "next/head";
+import { Provider } from "react-redux";
+import withRedux from "next-redux-wrapper";
+import { makeStore } from "../store";
 
-export default class MyApp extends App {
+class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
@@ -14,7 +17,7 @@ export default class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, store } = this.props;
 
     return (
       <Container>
@@ -47,9 +50,11 @@ export default class MyApp extends App {
             href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css"
           />
         </Head>
-
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </Container>
     );
   }
 }
+export default withRedux(makeStore)(MyApp);
