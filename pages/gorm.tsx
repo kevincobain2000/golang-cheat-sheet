@@ -3,15 +3,20 @@ import Layout from "../components/Layout";
 import Card from "../components/Card";
 import Fuse from "fuse.js";
 import FuseOptions from "../variables/fuse";
+import { connect } from "react-redux";
+
+import {
+  searchMarkdownJson,
+  getMarkdownJson
+} from "../store/actions/markdownActions";
 
 const Gorm = (props: any) => {
   const [items, setItems] = useState(props.items);
 
-  let fuse = new Fuse(props.items, FuseOptions);
+  let fuse = new Fuse(items, FuseOptions);
 
   let handleInputChange = (name: string): void => {
-    let items = name && name.trim() ? fuse.search(name) : [...props.items];
-    return setItems(items);
+    props.searchMarkdownJson(fuse, items, name);
   };
 
   return (
@@ -26,7 +31,7 @@ const Gorm = (props: any) => {
       <br />
       <br />
       <div className="columns is-multiline">
-        {items.map((item: any, key: React.ReactText) => (
+        {props.items.map((item: any, key: React.ReactText) => (
           <div className="column is-12" key={key}>
             <Card item={item} />
           </div>
@@ -36,9 +41,17 @@ const Gorm = (props: any) => {
   );
 };
 
-Gorm.getInitialProps = (): Object => {
-  const items = require("../Cheatsheets/json/Gorm.md.json");
+Gorm.getInitialProps = async (ctx: any) => {
+  const { items } = await ctx.store.dispatch(getMarkdownJson("Gorm"));
   return { items };
 };
 
-export default Gorm;
+const mapDispatchToProps = { searchMarkdownJson };
+
+const mapStateToProps = (state: any) => ({
+  items: state.markdownReducer.items
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Gorm);

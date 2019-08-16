@@ -49,7 +49,7 @@ Index.getInitialProps = async (ctx: any) => {
 const mapDispatchToProps = { searchMarkdownJson };
 
 const mapStateToProps = (state: any) => ({
-  items: state.usersReducer.items
+  items: state.markdownReducer.items
 });
 export default connect(
   mapStateToProps,
