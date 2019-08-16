@@ -19,7 +19,7 @@ $widescreen-enabled: false;
 $fullhd-enabled: false;
 
 // Update some of Bulma's component variables
-$body-background-color: $beige-lighter;
+$body-background-color: #f1f3f5;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
@@ -59,10 +59,12 @@ a {
 }
 h1 {
   font-size: 17px;
+  color: #2f4787;
 }
 .content h2 {
   font-size: 1.25em;
 }
+
 .content h3 {
   font-size: 1em;
 }

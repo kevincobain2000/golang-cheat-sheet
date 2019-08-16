@@ -6,7 +6,9 @@ const Card = (props: any): JSX.Element => {
     <div className="card">
       <header className="card-header">
         <span className="card-header-title">
-          <b>{props.item.subtitle}</b>
+          <h2>
+            <b>{props.item.subtitle}</b>
+          </h2>
           <span className="ml-2 mono">({props.item.title})</span>
         </span>
       </header>
