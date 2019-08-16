@@ -48,12 +48,12 @@ for (let filename of filenames) {
   }
   let json = JSON.stringify(jsonObjOut);
 
-  fs.writeFile("Cheatsheets/" + filename + ".json", json, err => {
+  fs.writeFile("Cheatsheets/json/" + filename + ".json", json, err => {
     if (err) console.log(err);
     console.log(
       "Successfully writter ./Cheatsheets/" +
         filename +
-        " to ./Cheatsheets/" +
+        " to ./Cheatsheets/json/" +
         filename +
         ".json File."
     );

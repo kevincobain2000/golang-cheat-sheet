@@ -14,7 +14,7 @@ const Card = (props: any): JSX.Element => {
         <div className="content">
           {(() => {
             if (props.item.subtitle != props.item.subsubtitle) {
-              <h3>{props.item.subsubtitle}</h3>;
+              return <h3 className="mono">{props.item.subsubtitle}</h3>;
             }
           })()}
           <MarkdownContent raw={props.item.raw} />

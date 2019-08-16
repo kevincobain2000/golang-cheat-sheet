@@ -37,7 +37,7 @@ const Index = (props: any) => {
 };
 
 Index.getInitialProps = async (): Promise<any> => {
-  const items = require("../Cheatsheets/Golang.md.json");
+  const items = require("../Cheatsheets/json/Golang.md.json");
   return { items };
 };
 

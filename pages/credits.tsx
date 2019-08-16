@@ -19,7 +19,7 @@ const Credits = (props: any) => {
 };
 
 Credits.getInitialProps = (): Object => {
-  const items = require("../Cheatsheets/Credits.md.json");
+  const items = require("../Cheatsheets/json/Credits.md.json");
   return { items };
 };
 

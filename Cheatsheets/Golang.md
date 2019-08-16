@@ -36,6 +36,56 @@ const (
     fmt.Println(c, d) // 8 16 (2^3, 2^4)
 ```
 
+### Constants
+
+```go
+package main
+
+import "fmt"
+import "math"
+
+// `const` declares a constant value.
+const s string = "constant"
+
+func main() {
+    fmt.Println(s)
+
+    // A `const` statement can appear anywhere a `var`
+    // statement can.
+    const n = 500000000
+
+    fmt.Println(n)
+
+    // Constant expressions perform arithmetic with
+    // arbitrary precision.
+    const d = 3e20 / n
+    fmt.Println(d)
+}
+```
+
+## Operators
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+    // Strings, which can be added together with `+`.
+    fmt.Println("go" + "lang")
+
+    // Integers and floats.
+    fmt.Println("1+1 =", 1+1)
+    fmt.Println("7.0/3.0 =", 7.0/3.0)
+
+    // Booleans, with boolean operators as you'd expect.
+    fmt.Println(true && false)
+    fmt.Println(true || false)
+    fmt.Println(!true)
+}
+```
+
 ## Functions
 ```go
 // a simple function
@@ -614,6 +664,45 @@ func main() {
 	do(21)
 	do("hello")
 	do(true)
+}
+```
+
+# Files
+
+## Reading Files
+
+```go
+package main
+
+import (
+    "fmt"
+    "io/ioutil"
+)
+
+func main() {
+    data, err := ioutil.ReadFile("text.txt")
+    if err != nil {
+        return
+    }
+    fmt.Println(string(data))
+}
+```
+
+## Writing Files
+
+```go
+package main
+
+import "os"
+
+func main() {
+    file, err := os.Create("text.txt")
+    if err != nil {
+        return
+    }
+    defer file.Close()
+
+    file.WriteString("test\nhello")
 }
 ```
 
