@@ -1,8 +1,1 @@
-[
-  {
-    "title": "Basic Syntax",
-    "subtitle": "Importing a package",
-    "subsubtitle": "Importing a package",
-    "raw": "```\nimport (\n _ \"github.com/go-sql-driver/mysql\"\n \"github.com/jinzhu/gorm\"\n _ \"github.com/jinzhu/gorm/dialects/mysql\" //You could import dialect\n )\n```\n\n"
-  }
-]
+[{"title":"Basic Syntax","subtitle":"Importing a package","subsubtitle":"Importing a package","raw":"```\nimport (\n _ \"github.com/go-sql-driver/mysql\"\n \"github.com/jinzhu/gorm\"\n _ \"github.com/jinzhu/gorm/dialects/mysql\" //You could import dialect\n )\n```\n\n"}]
