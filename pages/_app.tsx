@@ -27,13 +27,13 @@ export default class MyApp extends App {
           />
           <meta
             name="description"
-            content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language cheat sheet"
+            content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language."
           />
           <meta name="author" content="Pulkit Kathuria" />
           <meta property="og:title" content="Pulkit Kathuria" />
           <meta
             property="og:description"
-            content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language cheat sheet"
+            content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language."
           />
           <meta property="og:image" content="./static/icon.png" />
           <meta

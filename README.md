@@ -1,6 +1,9 @@
-## Demo app
+## Motivation
 
-Golang cheat sheet search page.
+- This repo focusses on consolidation of go lang learning material and quick references from various sources.
+- The static website, allows easy to search in one place.
+
+## App
 
 https://kevincobain2000.github.io/golang-cheat-sheet
 
@@ -32,8 +35,9 @@ npm run test
 ## Contribution
 
 - Fork this repository
-- Add your icons and submit a pull request
+- [Add your items to the markdown files here and submit a pull request](https://github.com/kevincobain2000/golang-cheat-sheet/tree/master/Cheatsheets)
 
 ## Credits
 
-Please visit https://kevincobain2000.github.io/golang-cheat-sheet for all credits
+Please visit https://kevincobain2000.github.io/golang-cheat-sheet/credits for all credits
+

@@ -10,7 +10,7 @@ const Layout = (props: any): JSX.Element => {
         <img className="icon-image" src="./static/logo.png" alt="logo icon" />
         <b className="ml-4">Go lang Cheat Sheet</b>
       </h1>
-      <p>Simple and easy way to navigate through the cheatsheet</p>
+      <p>Consolidated and Comprehensive guide to Go Lang.</p>
       <p className="mt-5 mb-10 nav-links">
         <Link as="./" href="/">
           <a title="Blog">Go Lang</a>
