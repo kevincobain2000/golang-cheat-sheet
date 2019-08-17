@@ -1,0 +1,528 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-40862413-1"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-40862413-1');
+</script><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/><meta charSet="utf-8"/><title>Go Language Cheat Sheet</title><link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico"/><meta name="description" content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language."/><meta name="author" content="Pulkit Kathuria"/><meta property="og:title" content="Pulkit Kathuria"/><meta property="og:description" content="Go Lang cheat sheet. Easy searchable tool for features and syntax for go language."/><meta property="og:image" content="./static/icon.png"/><meta property="og:url" content="https://kevincobain2000.github.io/golang-cheat-sheet"/><meta name="twitter:card" content="summary_large_image"/><meta property="og:site_name" content="Pulkit Kathuria"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css"/><meta name="next-head-count" content="13"/><link rel="preload" href="/golang-cheat-sheet/_next/static/p_VYS9WjTD0njJCLgK64k/pages/index.js" as="script"/><link rel="preload" href="/golang-cheat-sheet/_next/static/p_VYS9WjTD0njJCLgK64k/pages/_app.js" as="script"/><link rel="preload" href="/golang-cheat-sheet/_next/static/runtime/webpack-f5e50b6b501ccea2a79b.js" as="script"/><link rel="preload" href="/golang-cheat-sheet/_next/static/chunks/commons.bdb4fb5f14736ffc3a25.js" as="script"/><link rel="preload" href="/golang-cheat-sheet/_next/static/runtime/main-635ff2e09a94bf14329b.js" as="script"/><link rel="stylesheet" href="/golang-cheat-sheet/_next/static/css/commons.3134ee5a.chunk.css"/></head><body><a class="github-fork-ribbon" href="https://github.com/kevincobain2000/golang-cheat-sheet" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a><div id="__next"><div class="container is-widescreen is-mobile"><h1><img class="icon-image" src="./static/logo.png" alt="logo icon"/><b class="ml-4">Go lang Cheat Sheet</b></h1><p>Consolidated and Comprehensive guide to Go Lang.</p><p class="mt-5 mb-10 nav-links"><a title="Blog" href="./">Go Lang</a> <!-- -->|<!-- --> <a title="Gorm" href="./gorm">GORM</a> <!-- -->|<!-- --> <a title="Credits" href="./credits">CREDITS</a></p><section><input type="text" autofocus="" class="input is-info" placeholder="Type here..."/><br/><br/><div class="columns is-multiline"><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Hello World</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><p>File <code>hello.go</code>:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> <span style="color:#880000">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    fmt.Println(<span style="color:#880000">&quot;Hello Go&quot;</span>)
+}</code></pre><p><code>$ go run hello.go</code></p></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Declarations</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><p>Type goes after identifier!</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">var</span> foo <span style="font-weight:bold">int</span> <span style="color:#888888">// declaration without initialization</span>
+<span style="font-weight:bold">var</span> foo <span style="font-weight:bold">int</span> = <span style="color:#880000">42</span> <span style="color:#888888">// declaration with initialization</span>
+<span style="font-weight:bold">var</span> foo, bar <span style="font-weight:bold">int</span> = <span style="color:#880000">42</span>, <span style="color:#880000">1302</span> <span style="color:#888888">// declare and init multiple vars at once</span>
+<span style="font-weight:bold">var</span> foo = <span style="color:#880000">42</span> <span style="color:#888888">// type omitted, will be inferred</span>
+foo := <span style="color:#880000">42</span> <span style="color:#888888">// shorthand, only in func bodies, omit var keyword, type is always implicit</span>
+<span style="font-weight:bold">const</span> constant = <span style="color:#880000">&quot;This is a constant&quot;</span>
+
+<span style="color:#888888">// iota can be used for incrementing numbers, starting from 0</span>
+<span style="font-weight:bold">const</span> (
+    _ = <span style="color:#78A960">iota</span>
+    a
+    b
+    c = <span style="color:#880000">1</span> &lt;&lt; <span style="color:#78A960">iota</span>
+    d
+)
+    fmt.Println(a, b) <span style="color:#888888">// 1 2 (0 is skipped)</span>
+    fmt.Println(c, d) <span style="color:#888888">// 8 16 (2^3, 2^4)</span></code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Declarations</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Constants</h3><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> <span style="color:#880000">&quot;fmt&quot;</span>
+<span style="font-weight:bold">import</span> <span style="color:#880000">&quot;math&quot;</span>
+
+<span style="color:#888888">// `const` declares a constant value.</span>
+<span style="font-weight:bold">const</span> s <span style="font-weight:bold">string</span> = <span style="color:#880000">&quot;constant&quot;</span>
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    fmt.Println(s)
+
+    <span style="color:#888888">// A `const` statement can appear anywhere a `var`</span>
+    <span style="color:#888888">// statement can.</span>
+    <span style="font-weight:bold">const</span> n = <span style="color:#880000">500000000</span>
+
+    fmt.Println(n)
+
+    <span style="color:#888888">// Constant expressions perform arithmetic with</span>
+    <span style="color:#888888">// arbitrary precision.</span>
+    <span style="font-weight:bold">const</span> d = <span style="color:#880000">3e20</span> / n
+    fmt.Println(d)
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Operators</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> <span style="color:#880000">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+
+    <span style="color:#888888">// Strings, which can be added together with `+`.</span>
+    fmt.Println(<span style="color:#880000">&quot;go&quot;</span> + <span style="color:#880000">&quot;lang&quot;</span>)
+
+    <span style="color:#888888">// Integers and floats.</span>
+    fmt.Println(<span style="color:#880000">&quot;1+1 =&quot;</span>, <span style="color:#880000">1</span>+<span style="color:#880000">1</span>)
+    fmt.Println(<span style="color:#880000">&quot;7.0/3.0 =&quot;</span>, <span style="color:#880000">7.0</span>/<span style="color:#880000">3.0</span>)
+
+    <span style="color:#888888">// Booleans, with boolean operators as you&#x27;d expect.</span>
+    fmt.Println(<span style="color:#78A960">true</span> &amp;&amp; <span style="color:#78A960">false</span>)
+    fmt.Println(<span style="color:#78A960">true</span> || <span style="color:#78A960">false</span>)
+    fmt.Println(!<span style="color:#78A960">true</span>)
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Functions</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="color:#888888">// a simple function</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">functionName</span><span class="hljs-params">()</span></span> {}
+
+<span style="color:#888888">// function with parameters (again, types go after identifiers)</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">functionName</span><span class="hljs-params">(param1 <span style="font-weight:bold">string</span>, param2 <span style="font-weight:bold">int</span>)</span></span> {}
+
+<span style="color:#888888">// multiple parameters of the same type</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">functionName</span><span class="hljs-params">(param1, param2 <span style="font-weight:bold">int</span>)</span></span> {}
+
+<span style="color:#888888">// return type declaration</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">functionName</span><span class="hljs-params">()</span> <span style="color:#880000;font-weight:bold">int</span></span> {
+    <span style="font-weight:bold">return</span> <span style="color:#880000">42</span>
+}
+
+<span style="color:#888888">// Can return multiple values at once</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">returnMulti</span><span class="hljs-params">()</span> <span class="hljs-params">(<span style="font-weight:bold">int</span>, <span style="font-weight:bold">string</span>)</span></span> {
+    <span style="font-weight:bold">return</span> <span style="color:#880000">42</span>, <span style="color:#880000">&quot;foobar&quot;</span>
+}
+<span style="font-weight:bold">var</span> x, str = returnMulti()
+
+<span style="color:#888888">// Return multiple named results simply by return</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">returnMulti2</span><span class="hljs-params">()</span> <span class="hljs-params">(n <span style="font-weight:bold">int</span>, s <span style="font-weight:bold">string</span>)</span></span> {
+    n = <span style="color:#880000">42</span>
+    s = <span style="color:#880000">&quot;foobar&quot;</span>
+    <span style="color:#888888">// n and s will be returned</span>
+    <span style="font-weight:bold">return</span>
+}
+<span style="font-weight:bold">var</span> x, str = returnMulti2()</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Functions</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Functions As Values And Closures</h3><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    <span style="color:#888888">// assign a function to a name</span>
+    add := <span class="hljs-function"><span style="font-weight:bold">func</span><span class="hljs-params">(a, b <span style="font-weight:bold">int</span>)</span> <span style="color:#880000;font-weight:bold">int</span></span> {
+        <span style="font-weight:bold">return</span> a + b
+    }
+    <span style="color:#888888">// use the name to call the function</span>
+    fmt.Println(add(<span style="color:#880000">3</span>, <span style="color:#880000">4</span>))
+}
+
+<span style="color:#888888">// Closures, lexically scoped: Functions can access values that were</span>
+<span style="color:#888888">// in scope when defining the function</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">scope</span><span class="hljs-params">()</span> <span style="color:#880000;font-weight:bold">func</span><span class="hljs-params">()</span> <span style="color:#880000;font-weight:bold">int</span></span>{
+    outer_var := <span style="color:#880000">2</span>
+    foo := <span class="hljs-function"><span style="font-weight:bold">func</span><span class="hljs-params">()</span> <span style="color:#880000;font-weight:bold">int</span></span> { <span style="font-weight:bold">return</span> outer_var}
+    <span style="font-weight:bold">return</span> foo
+}
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">another_scope</span><span class="hljs-params">()</span> <span style="color:#880000;font-weight:bold">func</span><span class="hljs-params">()</span> <span style="color:#880000;font-weight:bold">int</span></span>{
+    <span style="color:#888888">// won&#x27;t compile because outer_var and foo not defined in this scope</span>
+    outer_var = <span style="color:#880000">444</span>
+    <span style="font-weight:bold">return</span> foo
+}
+
+
+<span style="color:#888888">// Closures</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">outer</span><span class="hljs-params">()</span> <span class="hljs-params">(<span style="font-weight:bold">func</span>()</span> <span style="color:#880000;font-weight:bold">int</span>, <span style="color:#880000;font-weight:bold">int</span>)</span> {
+    outer_var := <span style="color:#880000">2</span>
+    inner := <span class="hljs-function"><span style="font-weight:bold">func</span><span class="hljs-params">()</span> <span style="color:#880000;font-weight:bold">int</span></span> {
+        outer_var += <span style="color:#880000">99</span> <span style="color:#888888">// outer_var from outer scope is mutated.</span>
+        <span style="font-weight:bold">return</span> outer_var
+    }
+    inner()
+    <span style="font-weight:bold">return</span> inner, outer_var <span style="color:#888888">// return inner func and mutated outer_var 101</span>
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Functions</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Variadic Functions</h3><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    fmt.Println(adder(<span style="color:#880000">1</span>, <span style="color:#880000">2</span>, <span style="color:#880000">3</span>))     <span style="color:#888888">// 6</span>
+    fmt.Println(adder(<span style="color:#880000">9</span>, <span style="color:#880000">9</span>))    <span style="color:#888888">// 18</span>
+
+    nums := []<span style="font-weight:bold">int</span>{<span style="color:#880000">10</span>, <span style="color:#880000">20</span>, <span style="color:#880000">30</span>}
+    fmt.Println(adder(nums...))    <span style="color:#888888">// 60</span>
+}
+
+<span style="color:#888888">// By using ... before the type name of the last parameter you can indicate that it takes zero or more of those parameters.</span>
+<span style="color:#888888">// The function is invoked like any other function except we can pass as many arguments as we want.</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">adder</span><span class="hljs-params">(args ...<span style="font-weight:bold">int</span>)</span> <span style="color:#880000;font-weight:bold">int</span></span> {
+    total := <span style="color:#880000">0</span>
+    <span style="font-weight:bold">for</span> _, v := <span style="font-weight:bold">range</span> args { <span style="color:#888888">// Iterates over the arguments whatever the number.</span>
+        total += v
+    }
+    <span style="font-weight:bold">return</span> total
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Built-in Types</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code>bool
+
+string
+
+int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr
+
+byte <span style="color:#888888">// alias for uint8</span>
+
+rune <span style="color:#888888">// alias for int32 ~= a character (Unicode code point) - very Viking</span>
+
+float32 float64
+
+complex64 complex128</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Type Conversions</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">var</span> i <span style="font-weight:bold">int</span> = <span style="color:#880000">42</span>
+<span style="font-weight:bold">var</span> f <span style="font-weight:bold">float64</span> = <span style="font-weight:bold">float64</span>(i)
+<span style="font-weight:bold">var</span> u <span style="font-weight:bold">uint</span> = <span style="font-weight:bold">uint</span>(f)
+
+<span style="color:#888888">// alternative syntax</span>
+i := <span style="color:#880000">42</span>
+f := <span style="font-weight:bold">float64</span>(i)
+u := <span style="font-weight:bold">uint</span>(f)</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Packages</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><ul><li>Package declaration at top of every source file</li><li>Executables are in package <code>main</code></li><li>Convention: package name == last name of import path (import path <code>math/rand</code> =&gt; package <code>rand</code>)</li><li>Upper case identifier: exported (visible from other packages)</li><li>Lower case identifier: private (not visible from other packages)</li></ul></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Control structures</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">If</h3><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    <span style="color:#888888">// Basic one</span>
+    <span style="font-weight:bold">if</span> x &gt; <span style="color:#880000">10</span> {
+        <span style="font-weight:bold">return</span> x
+    } <span style="font-weight:bold">else</span> <span style="font-weight:bold">if</span> x == <span style="color:#880000">10</span> {
+        <span style="font-weight:bold">return</span> <span style="color:#880000">10</span>
+    } <span style="font-weight:bold">else</span> {
+        <span style="font-weight:bold">return</span> -x
+    }
+
+    <span style="color:#888888">// You can put one statement before the condition</span>
+    <span style="font-weight:bold">if</span> a := b + c; a &lt; <span style="color:#880000">42</span> {
+        <span style="font-weight:bold">return</span> a
+    } <span style="font-weight:bold">else</span> {
+        <span style="font-weight:bold">return</span> a - <span style="color:#880000">42</span>
+    }
+
+    <span style="color:#888888">// Type assertion inside if</span>
+    <span style="font-weight:bold">var</span> val <span style="font-weight:bold">interface</span>{}
+    val = <span style="color:#880000">&quot;foo&quot;</span>
+    <span style="font-weight:bold">if</span> str, ok := val.(<span style="font-weight:bold">string</span>); ok {
+        fmt.Println(str)
+    }
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Control structures</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Loops</h3><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code>    <span style="color:#888888">// There&#x27;s only `for`, no `while`, no `until`</span>
+    <span style="font-weight:bold">for</span> i := <span style="color:#880000">1</span>; i &lt; <span style="color:#880000">10</span>; i++ {
+    }
+    <span style="font-weight:bold">for</span> ; i &lt; <span style="color:#880000">10</span>;  { <span style="color:#888888">// while - loop</span>
+    }
+    <span style="font-weight:bold">for</span> i &lt; <span style="color:#880000">10</span>  { <span style="color:#888888">// you can omit semicolons if there is only a condition</span>
+    }
+    <span style="font-weight:bold">for</span> { <span style="color:#888888">// you can omit the condition ~ while (true)</span>
+    }
+
+    <span style="color:#888888">// use break/continue on current loop</span>
+    <span style="color:#888888">// use break/continue with label on outer loop</span>
+here:
+    <span style="font-weight:bold">for</span> i := <span style="color:#880000">0</span>; i &lt; <span style="color:#880000">2</span>; i++ {
+        <span style="font-weight:bold">for</span> j := i + <span style="color:#880000">1</span>; j &lt; <span style="color:#880000">3</span>; j++ {
+            <span style="font-weight:bold">if</span> i == <span style="color:#880000">0</span> {
+                <span style="font-weight:bold">continue</span> here
+            }
+            fmt.Println(j)
+            <span style="font-weight:bold">if</span> j == <span style="color:#880000">2</span> {
+                <span style="font-weight:bold">break</span>
+            }
+        }
+    }
+
+there:
+    <span style="font-weight:bold">for</span> i := <span style="color:#880000">0</span>; i &lt; <span style="color:#880000">2</span>; i++ {
+        <span style="font-weight:bold">for</span> j := i + <span style="color:#880000">1</span>; j &lt; <span style="color:#880000">3</span>; j++ {
+            <span style="font-weight:bold">if</span> j == <span style="color:#880000">1</span> {
+                <span style="font-weight:bold">continue</span>
+            }
+            fmt.Println(j)
+            <span style="font-weight:bold">if</span> j == <span style="color:#880000">2</span> {
+                <span style="font-weight:bold">break</span> there
+            }
+        }
+    }</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Control structures</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Switch</h3><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code>    <span style="color:#888888">// switch statement</span>
+    <span style="font-weight:bold">switch</span> operatingSystem {
+    <span style="font-weight:bold">case</span> <span style="color:#880000">&quot;darwin&quot;</span>:
+        fmt.Println(<span style="color:#880000">&quot;Mac OS Hipster&quot;</span>)
+        <span style="color:#888888">// cases break automatically, no fallthrough by default</span>
+    <span style="font-weight:bold">case</span> <span style="color:#880000">&quot;linux&quot;</span>:
+        fmt.Println(<span style="color:#880000">&quot;Linux Geek&quot;</span>)
+    <span style="font-weight:bold">default</span>:
+        <span style="color:#888888">// Windows, BSD, ...</span>
+        fmt.Println(<span style="color:#880000">&quot;Other&quot;</span>)
+    }
+
+    <span style="color:#888888">// as with for and if, you can have an assignment statement before the switch value</span>
+    <span style="font-weight:bold">switch</span> os := runtime.GOOS; os {
+    <span style="font-weight:bold">case</span> <span style="color:#880000">&quot;darwin&quot;</span>: ...
+    }
+
+    <span style="color:#888888">// you can also make comparisons in switch cases</span>
+    number := <span style="color:#880000">42</span>
+    <span style="font-weight:bold">switch</span> {
+        <span style="font-weight:bold">case</span> number &lt; <span style="color:#880000">42</span>:
+            fmt.Println(<span style="color:#880000">&quot;Smaller&quot;</span>)
+        <span style="font-weight:bold">case</span> number == <span style="color:#880000">42</span>:
+            fmt.Println(<span style="color:#880000">&quot;Equal&quot;</span>)
+        <span style="font-weight:bold">case</span> number &gt; <span style="color:#880000">42</span>:
+            fmt.Println(<span style="color:#880000">&quot;Greater&quot;</span>)
+    }
+
+    <span style="color:#888888">// cases can be presented in comma-separated lists</span>
+    <span style="font-weight:bold">var</span> char <span style="font-weight:bold">byte</span> = <span style="color:#880000">&#x27;?&#x27;</span>
+    <span style="font-weight:bold">switch</span> char {
+        <span style="font-weight:bold">case</span> <span style="color:#880000">&#x27; &#x27;</span>, <span style="color:#880000">&#x27;?&#x27;</span>, <span style="color:#880000">&#x27;&amp;&#x27;</span>, <span style="color:#880000">&#x27;=&#x27;</span>, <span style="color:#880000">&#x27;#&#x27;</span>, <span style="color:#880000">&#x27;+&#x27;</span>, <span style="color:#880000">&#x27;%&#x27;</span>:
+            fmt.Println(<span style="color:#880000">&quot;Should escape&quot;</span>)
+    }</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Arrays, Slices, Ranges</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Arrays</h3><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">var</span> a [<span style="color:#880000">10</span>]<span style="font-weight:bold">int</span> <span style="color:#888888">// declare an int array with length 10. Array length is part of the type!</span>
+a[<span style="color:#880000">3</span>] = <span style="color:#880000">42</span>     <span style="color:#888888">// set elements</span>
+i := a[<span style="color:#880000">3</span>]     <span style="color:#888888">// read elements</span>
+
+<span style="color:#888888">// declare and initialize</span>
+<span style="font-weight:bold">var</span> a = [<span style="color:#880000">2</span>]<span style="font-weight:bold">int</span>{<span style="color:#880000">1</span>, <span style="color:#880000">2</span>}
+a := [<span style="color:#880000">2</span>]<span style="font-weight:bold">int</span>{<span style="color:#880000">1</span>, <span style="color:#880000">2</span>} <span style="color:#888888">//shorthand</span>
+a := [...]<span style="font-weight:bold">int</span>{<span style="color:#880000">1</span>, <span style="color:#880000">2</span>} <span style="color:#888888">// elipsis -&gt; Compiler figures out array length</span></code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Arrays, Slices, Ranges</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Slices</h3><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">var</span> a []<span style="font-weight:bold">int</span>                              <span style="color:#888888">// declare a slice - similar to an array, but length is unspecified</span>
+<span style="font-weight:bold">var</span> a = []<span style="font-weight:bold">int</span> {<span style="color:#880000">1</span>, <span style="color:#880000">2</span>, <span style="color:#880000">3</span>, <span style="color:#880000">4</span>}               <span style="color:#888888">// declare and initialize a slice (backed by the array given implicitly)</span>
+a := []<span style="font-weight:bold">int</span>{<span style="color:#880000">1</span>, <span style="color:#880000">2</span>, <span style="color:#880000">3</span>, <span style="color:#880000">4</span>}                   <span style="color:#888888">// shorthand</span>
+chars := []<span style="font-weight:bold">string</span>{<span style="color:#880000">0</span>:<span style="color:#880000">&quot;a&quot;</span>, <span style="color:#880000">2</span>:<span style="color:#880000">&quot;c&quot;</span>, <span style="color:#880000">1</span>: <span style="color:#880000">&quot;b&quot;</span>}  <span style="color:#888888">// [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
+
+<span style="font-weight:bold">var</span> b = a[lo:hi]    <span style="color:#888888">// creates a slice (view of the array) from index lo to hi-1</span>
+<span style="font-weight:bold">var</span> b = a[<span style="color:#880000">1</span>:<span style="color:#880000">4</span>]        <span style="color:#888888">// slice from index 1 to 3</span>
+<span style="font-weight:bold">var</span> b = a[:<span style="color:#880000">3</span>]        <span style="color:#888888">// missing low index implies 0</span>
+<span style="font-weight:bold">var</span> b = a[<span style="color:#880000">3</span>:]        <span style="color:#888888">// missing high index implies len(a)</span>
+a =  <span style="color:#397300">append</span>(a,<span style="color:#880000">17</span>,<span style="color:#880000">3</span>)    <span style="color:#888888">// append items to slice a</span>
+c := <span style="color:#397300">append</span>(a,b...)    <span style="color:#888888">// concatenate slices a and b</span>
+
+<span style="color:#888888">// create a slice with make</span>
+a = <span style="color:#397300">make</span>([]<span style="font-weight:bold">byte</span>, <span style="color:#880000">5</span>, <span style="color:#880000">5</span>)    <span style="color:#888888">// first arg length, second capacity</span>
+a = <span style="color:#397300">make</span>([]<span style="font-weight:bold">byte</span>, <span style="color:#880000">5</span>)    <span style="color:#888888">// capacity is optional</span>
+
+<span style="color:#888888">// create a slice from an array</span>
+x := [<span style="color:#880000">3</span>]<span style="font-weight:bold">string</span>{<span style="color:#880000">&quot;Лайка&quot;</span>, <span style="color:#880000">&quot;Белка&quot;</span>, <span style="color:#880000">&quot;Стрелка&quot;</span>}
+s := x[:] <span style="color:#888888">// a slice referencing the storage of x</span></code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Arrays, Slices, Ranges</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Operations on Arrays and Slices</h3><div><p><code>len(a)</code> gives you the length of an array/a slice. It&#x27;s a built-in function, not a attribute/method on the array.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="color:#888888">// loop over an array/a slice</span>
+<span style="font-weight:bold">for</span> i, e := <span style="font-weight:bold">range</span> a {
+    <span style="color:#888888">// i is the index, e the element</span>
+}
+
+<span style="color:#888888">// if you only need e:</span>
+<span style="font-weight:bold">for</span> _, e := <span style="font-weight:bold">range</span> a {
+    <span style="color:#888888">// e is the element</span>
+}
+
+<span style="color:#888888">// ...and if you only need the index</span>
+<span style="font-weight:bold">for</span> i := <span style="font-weight:bold">range</span> a {
+}
+
+<span style="color:#888888">// In Go pre-1.4, you&#x27;ll get a compiler error if you&#x27;re not using i and e.</span>
+<span style="color:#888888">// Go 1.4 introduced a variable-free form, so that you can do this</span>
+<span style="font-weight:bold">for</span> <span style="font-weight:bold">range</span> time.Tick(time.Second) {
+    <span style="color:#888888">// do it once a sec</span>
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Maps</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">var</span> m <span style="font-weight:bold">map</span>[<span style="font-weight:bold">string</span>]<span style="font-weight:bold">int</span>
+m = <span style="color:#397300">make</span>(<span style="font-weight:bold">map</span>[<span style="font-weight:bold">string</span>]<span style="font-weight:bold">int</span>)
+m[<span style="color:#880000">&quot;key&quot;</span>] = <span style="color:#880000">42</span>
+fmt.Println(m[<span style="color:#880000">&quot;key&quot;</span>])
+
+<span style="color:#397300">delete</span>(m, <span style="color:#880000">&quot;key&quot;</span>)
+
+elem, ok := m[<span style="color:#880000">&quot;key&quot;</span>] <span style="color:#888888">// test if key &quot;key&quot; is present and retrieve it, if so</span>
+
+<span style="color:#888888">// map literal</span>
+<span style="font-weight:bold">var</span> m = <span style="font-weight:bold">map</span>[<span style="font-weight:bold">string</span>]Vertex{
+    <span style="color:#880000">&quot;Bell Labs&quot;</span>: {<span style="color:#880000">40.68433</span>, <span style="color:#880000">-74.39967</span>},
+    <span style="color:#880000">&quot;Google&quot;</span>:    {<span style="color:#880000">37.42202</span>, <span style="color:#880000">-122.08408</span>},
+}
+
+<span style="color:#888888">// iterate over map content</span>
+<span style="font-weight:bold">for</span> key, value := <span style="font-weight:bold">range</span> m {
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Structs</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><p>There are no classes, only structs. Structs can have methods.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="color:#888888">// A struct is a type. It&#x27;s also a collection of fields</span>
+
+<span style="color:#888888">// Declaration</span>
+<span style="font-weight:bold">type</span> Vertex <span style="font-weight:bold">struct</span> {
+    X, Y <span style="font-weight:bold">int</span>
+}
+
+<span style="color:#888888">// Creating</span>
+<span style="font-weight:bold">var</span> v = Vertex{<span style="color:#880000">1</span>, <span style="color:#880000">2</span>}
+<span style="font-weight:bold">var</span> v = Vertex{X: <span style="color:#880000">1</span>, Y: <span style="color:#880000">2</span>} <span style="color:#888888">// Creates a struct by defining values with keys</span>
+<span style="font-weight:bold">var</span> v = []Vertex{{<span style="color:#880000">1</span>,<span style="color:#880000">2</span>},{<span style="color:#880000">5</span>,<span style="color:#880000">2</span>},{<span style="color:#880000">5</span>,<span style="color:#880000">5</span>}} <span style="color:#888888">// Initialize a slice of structs</span>
+
+<span style="color:#888888">// Accessing members</span>
+v.X = <span style="color:#880000">4</span>
+
+<span style="color:#888888">// You can declare methods on structs. The struct you want to declare the</span>
+<span style="color:#888888">// method on (the receiving type) comes between the the func keyword and</span>
+<span style="color:#888888">// the method name. The struct is copied on each method call(!)</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span class="hljs-params">(v Vertex)</span> <span style="color:#880000;font-weight:bold">Abs</span><span class="hljs-params">()</span> <span style="color:#880000;font-weight:bold">float64</span></span> {
+    <span style="font-weight:bold">return</span> math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+<span style="color:#888888">// Call method</span>
+v.Abs()
+
+<span style="color:#888888">// For mutating methods, you need to use a pointer (see below) to the Struct</span>
+<span style="color:#888888">// as the type. With this, the struct value is not copied for the method call.</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span class="hljs-params">(v *Vertex)</span> <span style="color:#880000;font-weight:bold">add</span><span class="hljs-params">(n <span style="font-weight:bold">float64</span>)</span></span> {
+    v.X += n
+    v.Y += n
+}</code></pre><p><strong>Anonymous structs:</strong>
+Cheaper and safer than using <code>map[string]interface{}</code>.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code>point := <span style="font-weight:bold">struct</span> {
+    X, Y <span style="font-weight:bold">int</span>
+}{<span style="color:#880000">1</span>, <span style="color:#880000">2</span>}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Pointers</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code>p := Vertex{<span style="color:#880000">1</span>, <span style="color:#880000">2</span>}  <span style="color:#888888">// p is a Vertex</span>
+q := &amp;p            <span style="color:#888888">// q is a pointer to a Vertex</span>
+r := &amp;Vertex{<span style="color:#880000">1</span>, <span style="color:#880000">2</span>} <span style="color:#888888">// r is also a pointer to a Vertex</span>
+
+<span style="color:#888888">// The type of a pointer to a Vertex is *Vertex</span>
+
+<span style="font-weight:bold">var</span> s *Vertex = <span style="color:#397300">new</span>(Vertex) <span style="color:#888888">// new creates a pointer to a new struct instance</span></code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Interfaces</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="color:#888888">// interface declaration</span>
+<span style="font-weight:bold">type</span> Awesomizer <span style="font-weight:bold">interface</span> {
+    Awesomize() <span style="font-weight:bold">string</span>
+}
+
+<span style="color:#888888">// types do *not* declare to implement interfaces</span>
+<span style="font-weight:bold">type</span> Foo <span style="font-weight:bold">struct</span> {}
+
+<span style="color:#888888">// instead, types implicitly satisfy an interface if they implement all required methods</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span class="hljs-params">(foo Foo)</span> <span style="color:#880000;font-weight:bold">Awesomize</span><span class="hljs-params">()</span> <span style="color:#880000;font-weight:bold">string</span></span> {
+    <span style="font-weight:bold">return</span> <span style="color:#880000">&quot;Awesome!&quot;</span>
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Embedding</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><p>There is no subclassing in Go. Instead, there is interface and struct embedding.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="color:#888888">// ReadWriter implementations must satisfy both Reader and Writer</span>
+<span style="font-weight:bold">type</span> ReadWriter <span style="font-weight:bold">interface</span> {
+    Reader
+    Writer
+}
+
+<span style="color:#888888">// Server exposes all the methods that Logger has</span>
+<span style="font-weight:bold">type</span> Server <span style="font-weight:bold">struct</span> {
+    Host <span style="font-weight:bold">string</span>
+    Port <span style="font-weight:bold">int</span>
+    *log.Logger
+}
+
+<span style="color:#888888">// initialize the embedded type the usual way</span>
+server := &amp;Server{<span style="color:#880000">&quot;localhost&quot;</span>, <span style="color:#880000">80</span>, log.New(...)}
+
+<span style="color:#888888">// methods implemented on the embedded struct are passed through</span>
+server.Log(...) <span style="color:#888888">// calls server.Logger.Log(...)</span>
+
+<span style="color:#888888">// the field name of the embedded type is its type name (in this case Logger)</span>
+<span style="font-weight:bold">var</span> logger *log.Logger = server.Logger</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Errors</b></h2><span class="ml-2 mono">(<!-- -->Basic Syntax<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><p>There is no exception handling. Functions that might produce an error just declare an additional return value of type <code>Error</code>. This is the <code>Error</code> interface:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">type</span> error <span style="font-weight:bold">interface</span> {
+    Error() <span style="font-weight:bold">string</span>
+}</code></pre><p>A function that might return an error:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">doStuff</span><span class="hljs-params">()</span> <span class="hljs-params">(<span style="font-weight:bold">int</span>, error)</span></span> {
+}
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    result, err := doStuff()
+    <span style="font-weight:bold">if</span> err != <span style="color:#78A960">nil</span> {
+        <span style="color:#888888">// handle error</span>
+    } <span style="font-weight:bold">else</span> {
+        <span style="color:#888888">// all is good, use result</span>
+    }
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Goroutines</b></h2><span class="ml-2 mono">(<!-- -->Concurrency<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><p>Goroutines are lightweight threads (managed by Go, not OS threads). <code>go f(a, b)</code> starts a new goroutine which runs <code>f</code> (given <code>f</code> is a function).</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="color:#888888">// just a function (which can be later started as a goroutine)</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">doStuff</span><span class="hljs-params">(s <span style="font-weight:bold">string</span>)</span></span> {
+}
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    <span style="color:#888888">// using a named function in a goroutine</span>
+    <span style="font-weight:bold">go</span> doStuff(<span style="color:#880000">&quot;foobar&quot;</span>)
+
+    <span style="color:#888888">// using an anonymous inner function in a goroutine</span>
+    <span style="font-weight:bold">go</span> <span class="hljs-function"><span style="font-weight:bold">func</span> <span class="hljs-params">(x <span style="font-weight:bold">int</span>)</span></span> {
+        <span style="color:#888888">// function body goes here</span>
+    }(<span style="color:#880000">42</span>)
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Channels</b></h2><span class="ml-2 mono">(<!-- -->Concurrency<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code>ch := <span style="color:#397300">make</span>(<span style="font-weight:bold">chan</span> <span style="font-weight:bold">int</span>) <span style="color:#888888">// create a channel of type int</span>
+ch &lt;- <span style="color:#880000">42</span>             <span style="color:#888888">// Send a value to the channel ch.</span>
+v := &lt;-ch            <span style="color:#888888">// Receive a value from ch</span>
+
+<span style="color:#888888">// Non-buffered channels block. Read blocks when no value is available, write blocks until there is a read.</span>
+
+<span style="color:#888888">// Create a buffered channel. Writing to a buffered channels does not block if less than &lt;buffer size&gt; unread values have been written.</span>
+ch := <span style="color:#397300">make</span>(<span style="font-weight:bold">chan</span> <span style="font-weight:bold">int</span>, <span style="color:#880000">100</span>)
+
+<span style="color:#397300">close</span>(ch) <span style="color:#888888">// closes the channel (only sender should close)</span>
+
+<span style="color:#888888">// read from channel and test if it has been closed</span>
+v, ok := &lt;-ch
+
+<span style="color:#888888">// if ok is false, channel has been closed</span>
+
+<span style="color:#888888">// Read from channel until it is closed</span>
+<span style="font-weight:bold">for</span> i := <span style="font-weight:bold">range</span> ch {
+    fmt.Println(i)
+}
+
+<span style="color:#888888">// select blocks on multiple channel operations, if one unblocks, the corresponding case is executed</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">doStuff</span><span class="hljs-params">(channelOut, channelIn <span style="font-weight:bold">chan</span> <span style="font-weight:bold">int</span>)</span></span> {
+    <span style="font-weight:bold">select</span> {
+    <span style="font-weight:bold">case</span> channelOut &lt;- <span style="color:#880000">42</span>:
+        fmt.Println(<span style="color:#880000">&quot;We could write to channelOut!&quot;</span>)
+    <span style="font-weight:bold">case</span> x := &lt;- channelIn:
+        fmt.Println(<span style="color:#880000">&quot;We could read from channelIn&quot;</span>)
+    <span style="font-weight:bold">case</span> &lt;-time.After(time.Second * <span style="color:#880000">1</span>):
+        fmt.Println(<span style="color:#880000">&quot;timeout&quot;</span>)
+    }
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Channels</b></h2><span class="ml-2 mono">(<!-- -->Concurrency<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Channel Axioms</h3><div><ul><li>A send to a nil channel blocks forever</li></ul><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">var</span> c <span style="font-weight:bold">chan</span> <span style="font-weight:bold">string</span>
+c &lt;- <span style="color:#880000">&quot;Hello, World!&quot;</span>
+<span style="color:#888888">// fatal error: all goroutines are asleep - deadlock!</span></code></pre><ul><li>A receive from a nil channel blocks forever</li></ul><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">var</span> c <span style="font-weight:bold">chan</span> <span style="font-weight:bold">string</span>
+fmt.Println(&lt;-c)
+<span style="color:#888888">// fatal error: all goroutines are asleep - deadlock!</span></code></pre><ul><li>A send to a closed channel panics</li></ul><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">var</span> c = <span style="color:#397300">make</span>(<span style="font-weight:bold">chan</span> <span style="font-weight:bold">string</span>, <span style="color:#880000">1</span>)
+c &lt;- <span style="color:#880000">&quot;Hello, World!&quot;</span>
+<span style="color:#397300">close</span>(c)
+c &lt;- <span style="color:#880000">&quot;Hello, Panic!&quot;</span>
+<span style="color:#888888">// panic: send on closed channel</span></code></pre><ul><li>A receive from a closed channel returns the zero value immediately</li></ul><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">var</span> c = <span style="color:#397300">make</span>(<span style="font-weight:bold">chan</span> <span style="font-weight:bold">int</span>, <span style="color:#880000">2</span>)
+c &lt;- <span style="color:#880000">1</span>
+c &lt;- <span style="color:#880000">2</span>
+<span style="color:#397300">close</span>(c)
+<span style="font-weight:bold">for</span> i := <span style="color:#880000">0</span>; i &lt; <span style="color:#880000">3</span>; i++ {
+    fmt.Printf(<span style="color:#880000">&quot;%d &quot;</span>, &lt;-c)
+}
+<span style="color:#888888">// 1 2 0</span></code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Printing</b></h2><span class="ml-2 mono">(<!-- -->Concurrency<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code>fmt.Println(<span style="color:#880000">&quot;Hello, 你好, नमस्ते, Привет, ᎣᏏᏲ&quot;</span>) <span style="color:#888888">// basic print, plus newline</span>
+p := <span style="font-weight:bold">struct</span> { X, Y <span style="font-weight:bold">int</span> }{ <span style="color:#880000">17</span>, <span style="color:#880000">2</span> }
+fmt.Println( <span style="color:#880000">&quot;My point:&quot;</span>, p, <span style="color:#880000">&quot;x coord=&quot;</span>, p.X ) <span style="color:#888888">// print structs, ints, etc</span>
+s := fmt.Sprintln( <span style="color:#880000">&quot;My point:&quot;</span>, p, <span style="color:#880000">&quot;x coord=&quot;</span>, p.X ) <span style="color:#888888">// print to string variable</span>
+
+fmt.Printf(<span style="color:#880000">&quot;%d hex:%x bin:%b fp:%f sci:%e&quot;</span>,<span style="color:#880000">17</span>,<span style="color:#880000">17</span>,<span style="color:#880000">17</span>,<span style="color:#880000">17.0</span>,<span style="color:#880000">17.0</span>) <span style="color:#888888">// c-ish format</span>
+s2 := fmt.Sprintf( <span style="color:#880000">&quot;%d %f&quot;</span>, <span style="color:#880000">17</span>, <span style="color:#880000">17.0</span> ) <span style="color:#888888">// formatted print to string variable</span>
+
+hellomsg := <span style="color:#880000">`
+ &quot;Hello&quot; in Chinese is 你好 (&#x27;Ni Hao&#x27;)
+ &quot;Hello&quot; in Hindi is नमस्ते (&#x27;Namaste&#x27;)
+`</span> <span style="color:#888888">// multi-line string literal, using back-tick at beginning and end</span></code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Reflection</b></h2><span class="ml-2 mono">(<!-- -->Concurrency<!-- -->)</span></span></header><div class="card-content"><div class="content"><h3 class="mono">Type Switch</h3><div><p>A type switch is like a regular switch statement, but the cases in a type switch specify types (not values), and those values are compared against the type of the value held by the given interface value.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">do</span><span class="hljs-params">(i <span style="font-weight:bold">interface</span>{})</span></span> {
+    <span style="font-weight:bold">switch</span> v := i.(<span style="font-weight:bold">type</span>) {
+    <span style="font-weight:bold">case</span> <span style="font-weight:bold">int</span>:
+        fmt.Printf(<span style="color:#880000">&quot;Twice %v is %v\n&quot;</span>, v, v*<span style="color:#880000">2</span>)
+    <span style="font-weight:bold">case</span> <span style="font-weight:bold">string</span>:
+        fmt.Printf(<span style="color:#880000">&quot;%q is %v bytes long\n&quot;</span>, v, <span style="color:#397300">len</span>(v))
+    <span style="font-weight:bold">default</span>:
+        fmt.Printf(<span style="color:#880000">&quot;I don&#x27;t know about type %T!\n&quot;</span>, v)
+    }
+}
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    do(<span style="color:#880000">21</span>)
+    do(<span style="color:#880000">&quot;hello&quot;</span>)
+    do(<span style="color:#78A960">true</span>)
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Reading Files</b></h2><span class="ml-2 mono">(<!-- -->Files<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="color:#880000">&quot;fmt&quot;</span>
+    <span style="color:#880000">&quot;io/ioutil&quot;</span>
+)
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    data, err := ioutil.ReadFile(<span style="color:#880000">&quot;text.txt&quot;</span>)
+    <span style="font-weight:bold">if</span> err != <span style="color:#78A960">nil</span> {
+        <span style="font-weight:bold">return</span>
+    }
+    fmt.Println(<span style="font-weight:bold">string</span>(data))
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>Writing Files</b></h2><span class="ml-2 mono">(<!-- -->Files<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> <span style="color:#880000">&quot;os&quot;</span>
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    file, err := os.Create(<span style="color:#880000">&quot;text.txt&quot;</span>)
+    <span style="font-weight:bold">if</span> err != <span style="color:#78A960">nil</span> {
+        <span style="font-weight:bold">return</span>
+    }
+    <span style="font-weight:bold">defer</span> file.Close()
+
+    file.WriteString(<span style="color:#880000">&quot;test\nhello&quot;</span>)
+}</code></pre></div></div></div></div></div><div class="column is-12"><div class="card"><header class="card-header"><span class="card-header-title"><h2><b>HTTP Server</b></h2><span class="ml-2 mono">(<!-- -->Snippets<!-- -->)</span></span></header><div class="card-content"><div class="content"><div><pre style="display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0;color:#444"><code><span style="font-weight:bold">package</span> main
+
+<span style="font-weight:bold">import</span> (
+    <span style="color:#880000">&quot;fmt&quot;</span>
+    <span style="color:#880000">&quot;net/http&quot;</span>
+)
+
+<span style="color:#888888">// define a type for the response</span>
+<span style="font-weight:bold">type</span> Hello <span style="font-weight:bold">struct</span>{}
+
+<span style="color:#888888">// let that type implement the ServeHTTP method (defined in interface http.Handler)</span>
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span class="hljs-params">(h Hello)</span> <span style="color:#880000;font-weight:bold">ServeHTTP</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+    fmt.Fprint(w, <span style="color:#880000">&quot;Hello!&quot;</span>)
+}
+
+<span class="hljs-function"><span style="font-weight:bold">func</span> <span style="color:#880000;font-weight:bold">main</span><span class="hljs-params">()</span></span> {
+    <span style="font-weight:bold">var</span> h Hello
+    http.ListenAndServe(<span style="color:#880000">&quot;localhost:4000&quot;</span>, h)
+}
+
+<span style="color:#888888">// Here&#x27;s the method signature of http.ServeHTTP:</span>
+<span style="color:#888888">// type Handler interface {</span>
+<span style="color:#888888">//     ServeHTTP(w http.ResponseWriter, r *http.Request)</span>
+<span style="color:#888888">// }</span></code></pre></div></div></div></div></div></div></section></div></div><script id="__NEXT_DATA__" type="application/json">{"dataManager":"[]","props":{"isServer":true,"initialState":{"markdownReducer":{"items":[{"title":"Basic Syntax","subtitle":"Hello World","subsubtitle":"Hello World","raw":"File `hello.go`:\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    fmt.Println(\"Hello Go\")\n}\n```\n\n`$ go run hello.go`\n\n\n"},{"title":"Basic Syntax","subtitle":"Declarations","subsubtitle":"Declarations","raw":"Type goes after identifier!\n\n```go\nvar foo int // declaration without initialization\nvar foo int = 42 // declaration with initialization\nvar foo, bar int = 42, 1302 // declare and init multiple vars at once\nvar foo = 42 // type omitted, will be inferred\nfoo := 42 // shorthand, only in func bodies, omit var keyword, type is always implicit\nconst constant = \"This is a constant\"\n\n// iota can be used for incrementing numbers, starting from 0\nconst (\n    _ = iota\n    a\n    b\n    c = 1 \u003c\u003c iota\n    d\n)\n    fmt.Println(a, b) // 1 2 (0 is skipped)\n    fmt.Println(c, d) // 8 16 (2^3, 2^4)\n```\n\n"},{"title":"Basic Syntax","subtitle":"Declarations","subsubtitle":"Constants","raw":"```go\npackage main\n\nimport \"fmt\"\nimport \"math\"\n\n// `const` declares a constant value.\nconst s string = \"constant\"\n\nfunc main() {\n    fmt.Println(s)\n\n    // A `const` statement can appear anywhere a `var`\n    // statement can.\n    const n = 500000000\n\n    fmt.Println(n)\n\n    // Constant expressions perform arithmetic with\n    // arbitrary precision.\n    const d = 3e20 / n\n    fmt.Println(d)\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Operators","subsubtitle":"Operators","raw":"```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\n    // Strings, which can be added together with `+`.\n    fmt.Println(\"go\" + \"lang\")\n\n    // Integers and floats.\n    fmt.Println(\"1+1 =\", 1+1)\n    fmt.Println(\"7.0/3.0 =\", 7.0/3.0)\n\n    // Booleans, with boolean operators as you'd expect.\n    fmt.Println(true \u0026\u0026 false)\n    fmt.Println(true || false)\n    fmt.Println(!true)\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Functions","subsubtitle":"Functions","raw":"```go\n// a simple function\nfunc functionName() {}\n\n// function with parameters (again, types go after identifiers)\nfunc functionName(param1 string, param2 int) {}\n\n// multiple parameters of the same type\nfunc functionName(param1, param2 int) {}\n\n// return type declaration\nfunc functionName() int {\n    return 42\n}\n\n// Can return multiple values at once\nfunc returnMulti() (int, string) {\n    return 42, \"foobar\"\n}\nvar x, str = returnMulti()\n\n// Return multiple named results simply by return\nfunc returnMulti2() (n int, s string) {\n    n = 42\n    s = \"foobar\"\n    // n and s will be returned\n    return\n}\nvar x, str = returnMulti2()\n\n```\n\n"},{"title":"Basic Syntax","subtitle":"Functions","subsubtitle":"Functions As Values And Closures","raw":"```go\nfunc main() {\n    // assign a function to a name\n    add := func(a, b int) int {\n        return a + b\n    }\n    // use the name to call the function\n    fmt.Println(add(3, 4))\n}\n\n// Closures, lexically scoped: Functions can access values that were\n// in scope when defining the function\nfunc scope() func() int{\n    outer_var := 2\n    foo := func() int { return outer_var}\n    return foo\n}\n\nfunc another_scope() func() int{\n    // won't compile because outer_var and foo not defined in this scope\n    outer_var = 444\n    return foo\n}\n\n\n// Closures\nfunc outer() (func() int, int) {\n    outer_var := 2\n    inner := func() int {\n        outer_var += 99 // outer_var from outer scope is mutated.\n        return outer_var\n    }\n    inner()\n    return inner, outer_var // return inner func and mutated outer_var 101\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Functions","subsubtitle":"Variadic Functions","raw":"```go\nfunc main() {\n    fmt.Println(adder(1, 2, 3))     // 6\n    fmt.Println(adder(9, 9))    // 18\n\n    nums := []int{10, 20, 30}\n    fmt.Println(adder(nums...))    // 60\n}\n\n// By using ... before the type name of the last parameter you can indicate that it takes zero or more of those parameters.\n// The function is invoked like any other function except we can pass as many arguments as we want.\nfunc adder(args ...int) int {\n    total := 0\n    for _, v := range args { // Iterates over the arguments whatever the number.\n        total += v\n    }\n    return total\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Built-in Types","subsubtitle":"Built-in Types","raw":"```\nbool\n\nstring\n\nint  int8  int16  int32  int64\nuint uint8 uint16 uint32 uint64 uintptr\n\nbyte // alias for uint8\n\nrune // alias for int32 ~= a character (Unicode code point) - very Viking\n\nfloat32 float64\n\ncomplex64 complex128\n```\n\n"},{"title":"Basic Syntax","subtitle":"Type Conversions","subsubtitle":"Type Conversions","raw":"```go\nvar i int = 42\nvar f float64 = float64(i)\nvar u uint = uint(f)\n\n// alternative syntax\ni := 42\nf := float64(i)\nu := uint(f)\n```\n\n"},{"title":"Basic Syntax","subtitle":"Packages","subsubtitle":"Packages","raw":"- Package declaration at top of every source file\n- Executables are in package `main`\n- Convention: package name == last name of import path (import path `math/rand` =\u003e package `rand`)\n- Upper case identifier: exported (visible from other packages)\n- Lower case identifier: private (not visible from other packages)\n\n"},{"title":"Basic Syntax","subtitle":"Control structures","subsubtitle":"If","raw":"```go\nfunc main() {\n    // Basic one\n    if x \u003e 10 {\n        return x\n    } else if x == 10 {\n        return 10\n    } else {\n        return -x\n    }\n\n    // You can put one statement before the condition\n    if a := b + c; a \u003c 42 {\n        return a\n    } else {\n        return a - 42\n    }\n\n    // Type assertion inside if\n    var val interface{}\n    val = \"foo\"\n    if str, ok := val.(string); ok {\n        fmt.Println(str)\n    }\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Control structures","subsubtitle":"Loops","raw":"```go\n    // There's only `for`, no `while`, no `until`\n    for i := 1; i \u003c 10; i++ {\n    }\n    for ; i \u003c 10;  { // while - loop\n    }\n    for i \u003c 10  { // you can omit semicolons if there is only a condition\n    }\n    for { // you can omit the condition ~ while (true)\n    }\n\n    // use break/continue on current loop\n    // use break/continue with label on outer loop\nhere:\n    for i := 0; i \u003c 2; i++ {\n        for j := i + 1; j \u003c 3; j++ {\n            if i == 0 {\n                continue here\n            }\n            fmt.Println(j)\n            if j == 2 {\n                break\n            }\n        }\n    }\n\nthere:\n    for i := 0; i \u003c 2; i++ {\n        for j := i + 1; j \u003c 3; j++ {\n            if j == 1 {\n                continue\n            }\n            fmt.Println(j)\n            if j == 2 {\n                break there\n            }\n        }\n    }\n```\n\n"},{"title":"Basic Syntax","subtitle":"Control structures","subsubtitle":"Switch","raw":"```go\n    // switch statement\n    switch operatingSystem {\n    case \"darwin\":\n        fmt.Println(\"Mac OS Hipster\")\n        // cases break automatically, no fallthrough by default\n    case \"linux\":\n        fmt.Println(\"Linux Geek\")\n    default:\n        // Windows, BSD, ...\n        fmt.Println(\"Other\")\n    }\n\n    // as with for and if, you can have an assignment statement before the switch value\n    switch os := runtime.GOOS; os {\n    case \"darwin\": ...\n    }\n\n    // you can also make comparisons in switch cases\n    number := 42\n    switch {\n        case number \u003c 42:\n            fmt.Println(\"Smaller\")\n        case number == 42:\n            fmt.Println(\"Equal\")\n        case number \u003e 42:\n            fmt.Println(\"Greater\")\n    }\n\n    // cases can be presented in comma-separated lists\n    var char byte = '?'\n    switch char {\n        case ' ', '?', '\u0026', '=', '#', '+', '%':\n            fmt.Println(\"Should escape\")\n    }\n```\n\n"},{"title":"Basic Syntax","subtitle":"Arrays, Slices, Ranges","subsubtitle":"Arrays","raw":"```go\nvar a [10]int // declare an int array with length 10. Array length is part of the type!\na[3] = 42     // set elements\ni := a[3]     // read elements\n\n// declare and initialize\nvar a = [2]int{1, 2}\na := [2]int{1, 2} //shorthand\na := [...]int{1, 2} // elipsis -\u003e Compiler figures out array length\n```\n\n"},{"title":"Basic Syntax","subtitle":"Arrays, Slices, Ranges","subsubtitle":"Slices","raw":"```go\nvar a []int                              // declare a slice - similar to an array, but length is unspecified\nvar a = []int {1, 2, 3, 4}               // declare and initialize a slice (backed by the array given implicitly)\na := []int{1, 2, 3, 4}                   // shorthand\nchars := []string{0:\"a\", 2:\"c\", 1: \"b\"}  // [\"a\", \"b\", \"c\"]\n\nvar b = a[lo:hi]    // creates a slice (view of the array) from index lo to hi-1\nvar b = a[1:4]        // slice from index 1 to 3\nvar b = a[:3]        // missing low index implies 0\nvar b = a[3:]        // missing high index implies len(a)\na =  append(a,17,3)    // append items to slice a\nc := append(a,b...)    // concatenate slices a and b\n\n// create a slice with make\na = make([]byte, 5, 5)    // first arg length, second capacity\na = make([]byte, 5)    // capacity is optional\n\n// create a slice from an array\nx := [3]string{\"Лайка\", \"Белка\", \"Стрелка\"}\ns := x[:] // a slice referencing the storage of x\n```\n\n"},{"title":"Basic Syntax","subtitle":"Arrays, Slices, Ranges","subsubtitle":"Operations on Arrays and Slices","raw":"`len(a)` gives you the length of an array/a slice. It's a built-in function, not a attribute/method on the array.\n\n\n```go\n// loop over an array/a slice\nfor i, e := range a {\n    // i is the index, e the element\n}\n\n// if you only need e:\nfor _, e := range a {\n    // e is the element\n}\n\n// ...and if you only need the index\nfor i := range a {\n}\n\n// In Go pre-1.4, you'll get a compiler error if you're not using i and e.\n// Go 1.4 introduced a variable-free form, so that you can do this\nfor range time.Tick(time.Second) {\n    // do it once a sec\n}\n\n```\n\n"},{"title":"Basic Syntax","subtitle":"Maps","subsubtitle":"Maps","raw":"```go\nvar m map[string]int\nm = make(map[string]int)\nm[\"key\"] = 42\nfmt.Println(m[\"key\"])\n\ndelete(m, \"key\")\n\nelem, ok := m[\"key\"] // test if key \"key\" is present and retrieve it, if so\n\n// map literal\nvar m = map[string]Vertex{\n    \"Bell Labs\": {40.68433, -74.39967},\n    \"Google\":    {37.42202, -122.08408},\n}\n\n// iterate over map content\nfor key, value := range m {\n}\n\n```\n\n"},{"title":"Basic Syntax","subtitle":"Structs","subsubtitle":"Structs","raw":"There are no classes, only structs. Structs can have methods.\n\n```go\n// A struct is a type. It's also a collection of fields\n\n// Declaration\ntype Vertex struct {\n    X, Y int\n}\n\n// Creating\nvar v = Vertex{1, 2}\nvar v = Vertex{X: 1, Y: 2} // Creates a struct by defining values with keys\nvar v = []Vertex{{1,2},{5,2},{5,5}} // Initialize a slice of structs\n\n// Accessing members\nv.X = 4\n\n// You can declare methods on structs. The struct you want to declare the\n// method on (the receiving type) comes between the the func keyword and\n// the method name. The struct is copied on each method call(!)\nfunc (v Vertex) Abs() float64 {\n    return math.Sqrt(v.X*v.X + v.Y*v.Y)\n}\n\n// Call method\nv.Abs()\n\n// For mutating methods, you need to use a pointer (see below) to the Struct\n// as the type. With this, the struct value is not copied for the method call.\nfunc (v *Vertex) add(n float64) {\n    v.X += n\n    v.Y += n\n}\n\n```\n\n**Anonymous structs:**\nCheaper and safer than using `map[string]interface{}`.\n\n```go\npoint := struct {\n    X, Y int\n}{1, 2}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Pointers","subsubtitle":"Pointers","raw":"```go\np := Vertex{1, 2}  // p is a Vertex\nq := \u0026p            // q is a pointer to a Vertex\nr := \u0026Vertex{1, 2} // r is also a pointer to a Vertex\n\n// The type of a pointer to a Vertex is *Vertex\n\nvar s *Vertex = new(Vertex) // new creates a pointer to a new struct instance\n```\n\n"},{"title":"Basic Syntax","subtitle":"Interfaces","subsubtitle":"Interfaces","raw":"```go\n// interface declaration\ntype Awesomizer interface {\n    Awesomize() string\n}\n\n// types do *not* declare to implement interfaces\ntype Foo struct {}\n\n// instead, types implicitly satisfy an interface if they implement all required methods\nfunc (foo Foo) Awesomize() string {\n    return \"Awesome!\"\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Embedding","subsubtitle":"Embedding","raw":"There is no subclassing in Go. Instead, there is interface and struct embedding.\n\n\n```go\n// ReadWriter implementations must satisfy both Reader and Writer\ntype ReadWriter interface {\n    Reader\n    Writer\n}\n\n// Server exposes all the methods that Logger has\ntype Server struct {\n    Host string\n    Port int\n    *log.Logger\n}\n\n// initialize the embedded type the usual way\nserver := \u0026Server{\"localhost\", 80, log.New(...)}\n\n// methods implemented on the embedded struct are passed through\nserver.Log(...) // calls server.Logger.Log(...)\n\n// the field name of the embedded type is its type name (in this case Logger)\nvar logger *log.Logger = server.Logger\n```\n\n"},{"title":"Basic Syntax","subtitle":"Errors","subsubtitle":"Errors","raw":"There is no exception handling. Functions that might produce an error just declare an additional return value of type `Error`. This is the `Error` interface:\n\n```go\ntype error interface {\n    Error() string\n}\n```\n\nA function that might return an error:\n\n```go\nfunc doStuff() (int, error) {\n}\n\nfunc main() {\n    result, err := doStuff()\n    if err != nil {\n        // handle error\n    } else {\n        // all is good, use result\n    }\n}\n```\n\n"},{"title":"Concurrency","subtitle":"Goroutines","subsubtitle":"Goroutines","raw":"Goroutines are lightweight threads (managed by Go, not OS threads). `go f(a, b)` starts a new goroutine which runs `f` (given `f` is a function).\n\n\n```go\n// just a function (which can be later started as a goroutine)\nfunc doStuff(s string) {\n}\n\nfunc main() {\n    // using a named function in a goroutine\n    go doStuff(\"foobar\")\n\n    // using an anonymous inner function in a goroutine\n    go func (x int) {\n        // function body goes here\n    }(42)\n}\n```\n\n"},{"title":"Concurrency","subtitle":"Channels","subsubtitle":"Channels","raw":"```go\nch := make(chan int) // create a channel of type int\nch \u003c- 42             // Send a value to the channel ch.\nv := \u003c-ch            // Receive a value from ch\n\n// Non-buffered channels block. Read blocks when no value is available, write blocks until there is a read.\n\n// Create a buffered channel. Writing to a buffered channels does not block if less than \u003cbuffer size\u003e unread values have been written.\nch := make(chan int, 100)\n\nclose(ch) // closes the channel (only sender should close)\n\n// read from channel and test if it has been closed\nv, ok := \u003c-ch\n\n// if ok is false, channel has been closed\n\n// Read from channel until it is closed\nfor i := range ch {\n    fmt.Println(i)\n}\n\n// select blocks on multiple channel operations, if one unblocks, the corresponding case is executed\nfunc doStuff(channelOut, channelIn chan int) {\n    select {\n    case channelOut \u003c- 42:\n        fmt.Println(\"We could write to channelOut!\")\n    case x := \u003c- channelIn:\n        fmt.Println(\"We could read from channelIn\")\n    case \u003c-time.After(time.Second * 1):\n        fmt.Println(\"timeout\")\n    }\n}\n```\n\n"},{"title":"Concurrency","subtitle":"Channels","subsubtitle":"Channel Axioms","raw":"- A send to a nil channel blocks forever\n\n```go\nvar c chan string\nc \u003c- \"Hello, World!\"\n// fatal error: all goroutines are asleep - deadlock!\n```\n\n- A receive from a nil channel blocks forever\n\n```go\nvar c chan string\nfmt.Println(\u003c-c)\n// fatal error: all goroutines are asleep - deadlock!\n```\n\n- A send to a closed channel panics\n\n```go\nvar c = make(chan string, 1)\nc \u003c- \"Hello, World!\"\nclose(c)\nc \u003c- \"Hello, Panic!\"\n// panic: send on closed channel\n```\n\n- A receive from a closed channel returns the zero value immediately\n\n```go\nvar c = make(chan int, 2)\nc \u003c- 1\nc \u003c- 2\nclose(c)\nfor i := 0; i \u003c 3; i++ {\n    fmt.Printf(\"%d \", \u003c-c)\n}\n// 1 2 0\n```\n\n"},{"title":"Concurrency","subtitle":"Printing","subsubtitle":"Printing","raw":"```go\nfmt.Println(\"Hello, 你好, नमस्ते, Привет, ᎣᏏᏲ\") // basic print, plus newline\np := struct { X, Y int }{ 17, 2 }\nfmt.Println( \"My point:\", p, \"x coord=\", p.X ) // print structs, ints, etc\ns := fmt.Sprintln( \"My point:\", p, \"x coord=\", p.X ) // print to string variable\n\nfmt.Printf(\"%d hex:%x bin:%b fp:%f sci:%e\",17,17,17,17.0,17.0) // c-ish format\ns2 := fmt.Sprintf( \"%d %f\", 17, 17.0 ) // formatted print to string variable\n\nhellomsg := `\n \"Hello\" in Chinese is 你好 ('Ni Hao')\n \"Hello\" in Hindi is नमस्ते ('Namaste')\n` // multi-line string literal, using back-tick at beginning and end\n```\n\n"},{"title":"Concurrency","subtitle":"Reflection","subsubtitle":"Type Switch","raw":"A type switch is like a regular switch statement, but the cases in a type switch specify types (not values), and those values are compared against the type of the value held by the given interface value.\n\n```go\nfunc do(i interface{}) {\n    switch v := i.(type) {\n    case int:\n        fmt.Printf(\"Twice %v is %v\\n\", v, v*2)\n    case string:\n        fmt.Printf(\"%q is %v bytes long\\n\", v, len(v))\n    default:\n        fmt.Printf(\"I don't know about type %T!\\n\", v)\n    }\n}\n\nfunc main() {\n    do(21)\n    do(\"hello\")\n    do(true)\n}\n```\n\n"},{"title":"Files","subtitle":"Reading Files","subsubtitle":"Reading Files","raw":"```go\npackage main\n\nimport (\n    \"fmt\"\n    \"io/ioutil\"\n)\n\nfunc main() {\n    data, err := ioutil.ReadFile(\"text.txt\")\n    if err != nil {\n        return\n    }\n    fmt.Println(string(data))\n}\n```\n\n"},{"title":"Files","subtitle":"Writing Files","subsubtitle":"Writing Files","raw":"```go\npackage main\n\nimport \"os\"\n\nfunc main() {\n    file, err := os.Create(\"text.txt\")\n    if err != nil {\n        return\n    }\n    defer file.Close()\n\n    file.WriteString(\"test\\nhello\")\n}\n```\n\n"},{"title":"Snippets","subtitle":"HTTP Server","subsubtitle":"HTTP Server","raw":"```go\npackage main\n\nimport (\n    \"fmt\"\n    \"net/http\"\n)\n\n// define a type for the response\ntype Hello struct{}\n\n// let that type implement the ServeHTTP method (defined in interface http.Handler)\nfunc (h Hello) ServeHTTP(w http.ResponseWriter, r *http.Request) {\n    fmt.Fprint(w, \"Hello!\")\n}\n\nfunc main() {\n    var h Hello\n    http.ListenAndServe(\"localhost:4000\", h)\n}\n\n// Here's the method signature of http.ServeHTTP:\n// type Handler interface {\n//     ServeHTTP(w http.ResponseWriter, r *http.Request)\n// }\n```\n\n"}]}},"initialProps":{"pageProps":{"items":[{"title":"Basic Syntax","subtitle":"Hello World","subsubtitle":"Hello World","raw":"File `hello.go`:\n\n```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    fmt.Println(\"Hello Go\")\n}\n```\n\n`$ go run hello.go`\n\n\n"},{"title":"Basic Syntax","subtitle":"Declarations","subsubtitle":"Declarations","raw":"Type goes after identifier!\n\n```go\nvar foo int // declaration without initialization\nvar foo int = 42 // declaration with initialization\nvar foo, bar int = 42, 1302 // declare and init multiple vars at once\nvar foo = 42 // type omitted, will be inferred\nfoo := 42 // shorthand, only in func bodies, omit var keyword, type is always implicit\nconst constant = \"This is a constant\"\n\n// iota can be used for incrementing numbers, starting from 0\nconst (\n    _ = iota\n    a\n    b\n    c = 1 \u003c\u003c iota\n    d\n)\n    fmt.Println(a, b) // 1 2 (0 is skipped)\n    fmt.Println(c, d) // 8 16 (2^3, 2^4)\n```\n\n"},{"title":"Basic Syntax","subtitle":"Declarations","subsubtitle":"Constants","raw":"```go\npackage main\n\nimport \"fmt\"\nimport \"math\"\n\n// `const` declares a constant value.\nconst s string = \"constant\"\n\nfunc main() {\n    fmt.Println(s)\n\n    // A `const` statement can appear anywhere a `var`\n    // statement can.\n    const n = 500000000\n\n    fmt.Println(n)\n\n    // Constant expressions perform arithmetic with\n    // arbitrary precision.\n    const d = 3e20 / n\n    fmt.Println(d)\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Operators","subsubtitle":"Operators","raw":"```go\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\n    // Strings, which can be added together with `+`.\n    fmt.Println(\"go\" + \"lang\")\n\n    // Integers and floats.\n    fmt.Println(\"1+1 =\", 1+1)\n    fmt.Println(\"7.0/3.0 =\", 7.0/3.0)\n\n    // Booleans, with boolean operators as you'd expect.\n    fmt.Println(true \u0026\u0026 false)\n    fmt.Println(true || false)\n    fmt.Println(!true)\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Functions","subsubtitle":"Functions","raw":"```go\n// a simple function\nfunc functionName() {}\n\n// function with parameters (again, types go after identifiers)\nfunc functionName(param1 string, param2 int) {}\n\n// multiple parameters of the same type\nfunc functionName(param1, param2 int) {}\n\n// return type declaration\nfunc functionName() int {\n    return 42\n}\n\n// Can return multiple values at once\nfunc returnMulti() (int, string) {\n    return 42, \"foobar\"\n}\nvar x, str = returnMulti()\n\n// Return multiple named results simply by return\nfunc returnMulti2() (n int, s string) {\n    n = 42\n    s = \"foobar\"\n    // n and s will be returned\n    return\n}\nvar x, str = returnMulti2()\n\n```\n\n"},{"title":"Basic Syntax","subtitle":"Functions","subsubtitle":"Functions As Values And Closures","raw":"```go\nfunc main() {\n    // assign a function to a name\n    add := func(a, b int) int {\n        return a + b\n    }\n    // use the name to call the function\n    fmt.Println(add(3, 4))\n}\n\n// Closures, lexically scoped: Functions can access values that were\n// in scope when defining the function\nfunc scope() func() int{\n    outer_var := 2\n    foo := func() int { return outer_var}\n    return foo\n}\n\nfunc another_scope() func() int{\n    // won't compile because outer_var and foo not defined in this scope\n    outer_var = 444\n    return foo\n}\n\n\n// Closures\nfunc outer() (func() int, int) {\n    outer_var := 2\n    inner := func() int {\n        outer_var += 99 // outer_var from outer scope is mutated.\n        return outer_var\n    }\n    inner()\n    return inner, outer_var // return inner func and mutated outer_var 101\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Functions","subsubtitle":"Variadic Functions","raw":"```go\nfunc main() {\n    fmt.Println(adder(1, 2, 3))     // 6\n    fmt.Println(adder(9, 9))    // 18\n\n    nums := []int{10, 20, 30}\n    fmt.Println(adder(nums...))    // 60\n}\n\n// By using ... before the type name of the last parameter you can indicate that it takes zero or more of those parameters.\n// The function is invoked like any other function except we can pass as many arguments as we want.\nfunc adder(args ...int) int {\n    total := 0\n    for _, v := range args { // Iterates over the arguments whatever the number.\n        total += v\n    }\n    return total\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Built-in Types","subsubtitle":"Built-in Types","raw":"```\nbool\n\nstring\n\nint  int8  int16  int32  int64\nuint uint8 uint16 uint32 uint64 uintptr\n\nbyte // alias for uint8\n\nrune // alias for int32 ~= a character (Unicode code point) - very Viking\n\nfloat32 float64\n\ncomplex64 complex128\n```\n\n"},{"title":"Basic Syntax","subtitle":"Type Conversions","subsubtitle":"Type Conversions","raw":"```go\nvar i int = 42\nvar f float64 = float64(i)\nvar u uint = uint(f)\n\n// alternative syntax\ni := 42\nf := float64(i)\nu := uint(f)\n```\n\n"},{"title":"Basic Syntax","subtitle":"Packages","subsubtitle":"Packages","raw":"- Package declaration at top of every source file\n- Executables are in package `main`\n- Convention: package name == last name of import path (import path `math/rand` =\u003e package `rand`)\n- Upper case identifier: exported (visible from other packages)\n- Lower case identifier: private (not visible from other packages)\n\n"},{"title":"Basic Syntax","subtitle":"Control structures","subsubtitle":"If","raw":"```go\nfunc main() {\n    // Basic one\n    if x \u003e 10 {\n        return x\n    } else if x == 10 {\n        return 10\n    } else {\n        return -x\n    }\n\n    // You can put one statement before the condition\n    if a := b + c; a \u003c 42 {\n        return a\n    } else {\n        return a - 42\n    }\n\n    // Type assertion inside if\n    var val interface{}\n    val = \"foo\"\n    if str, ok := val.(string); ok {\n        fmt.Println(str)\n    }\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Control structures","subsubtitle":"Loops","raw":"```go\n    // There's only `for`, no `while`, no `until`\n    for i := 1; i \u003c 10; i++ {\n    }\n    for ; i \u003c 10;  { // while - loop\n    }\n    for i \u003c 10  { // you can omit semicolons if there is only a condition\n    }\n    for { // you can omit the condition ~ while (true)\n    }\n\n    // use break/continue on current loop\n    // use break/continue with label on outer loop\nhere:\n    for i := 0; i \u003c 2; i++ {\n        for j := i + 1; j \u003c 3; j++ {\n            if i == 0 {\n                continue here\n            }\n            fmt.Println(j)\n            if j == 2 {\n                break\n            }\n        }\n    }\n\nthere:\n    for i := 0; i \u003c 2; i++ {\n        for j := i + 1; j \u003c 3; j++ {\n            if j == 1 {\n                continue\n            }\n            fmt.Println(j)\n            if j == 2 {\n                break there\n            }\n        }\n    }\n```\n\n"},{"title":"Basic Syntax","subtitle":"Control structures","subsubtitle":"Switch","raw":"```go\n    // switch statement\n    switch operatingSystem {\n    case \"darwin\":\n        fmt.Println(\"Mac OS Hipster\")\n        // cases break automatically, no fallthrough by default\n    case \"linux\":\n        fmt.Println(\"Linux Geek\")\n    default:\n        // Windows, BSD, ...\n        fmt.Println(\"Other\")\n    }\n\n    // as with for and if, you can have an assignment statement before the switch value\n    switch os := runtime.GOOS; os {\n    case \"darwin\": ...\n    }\n\n    // you can also make comparisons in switch cases\n    number := 42\n    switch {\n        case number \u003c 42:\n            fmt.Println(\"Smaller\")\n        case number == 42:\n            fmt.Println(\"Equal\")\n        case number \u003e 42:\n            fmt.Println(\"Greater\")\n    }\n\n    // cases can be presented in comma-separated lists\n    var char byte = '?'\n    switch char {\n        case ' ', '?', '\u0026', '=', '#', '+', '%':\n            fmt.Println(\"Should escape\")\n    }\n```\n\n"},{"title":"Basic Syntax","subtitle":"Arrays, Slices, Ranges","subsubtitle":"Arrays","raw":"```go\nvar a [10]int // declare an int array with length 10. Array length is part of the type!\na[3] = 42     // set elements\ni := a[3]     // read elements\n\n// declare and initialize\nvar a = [2]int{1, 2}\na := [2]int{1, 2} //shorthand\na := [...]int{1, 2} // elipsis -\u003e Compiler figures out array length\n```\n\n"},{"title":"Basic Syntax","subtitle":"Arrays, Slices, Ranges","subsubtitle":"Slices","raw":"```go\nvar a []int                              // declare a slice - similar to an array, but length is unspecified\nvar a = []int {1, 2, 3, 4}               // declare and initialize a slice (backed by the array given implicitly)\na := []int{1, 2, 3, 4}                   // shorthand\nchars := []string{0:\"a\", 2:\"c\", 1: \"b\"}  // [\"a\", \"b\", \"c\"]\n\nvar b = a[lo:hi]    // creates a slice (view of the array) from index lo to hi-1\nvar b = a[1:4]        // slice from index 1 to 3\nvar b = a[:3]        // missing low index implies 0\nvar b = a[3:]        // missing high index implies len(a)\na =  append(a,17,3)    // append items to slice a\nc := append(a,b...)    // concatenate slices a and b\n\n// create a slice with make\na = make([]byte, 5, 5)    // first arg length, second capacity\na = make([]byte, 5)    // capacity is optional\n\n// create a slice from an array\nx := [3]string{\"Лайка\", \"Белка\", \"Стрелка\"}\ns := x[:] // a slice referencing the storage of x\n```\n\n"},{"title":"Basic Syntax","subtitle":"Arrays, Slices, Ranges","subsubtitle":"Operations on Arrays and Slices","raw":"`len(a)` gives you the length of an array/a slice. It's a built-in function, not a attribute/method on the array.\n\n\n```go\n// loop over an array/a slice\nfor i, e := range a {\n    // i is the index, e the element\n}\n\n// if you only need e:\nfor _, e := range a {\n    // e is the element\n}\n\n// ...and if you only need the index\nfor i := range a {\n}\n\n// In Go pre-1.4, you'll get a compiler error if you're not using i and e.\n// Go 1.4 introduced a variable-free form, so that you can do this\nfor range time.Tick(time.Second) {\n    // do it once a sec\n}\n\n```\n\n"},{"title":"Basic Syntax","subtitle":"Maps","subsubtitle":"Maps","raw":"```go\nvar m map[string]int\nm = make(map[string]int)\nm[\"key\"] = 42\nfmt.Println(m[\"key\"])\n\ndelete(m, \"key\")\n\nelem, ok := m[\"key\"] // test if key \"key\" is present and retrieve it, if so\n\n// map literal\nvar m = map[string]Vertex{\n    \"Bell Labs\": {40.68433, -74.39967},\n    \"Google\":    {37.42202, -122.08408},\n}\n\n// iterate over map content\nfor key, value := range m {\n}\n\n```\n\n"},{"title":"Basic Syntax","subtitle":"Structs","subsubtitle":"Structs","raw":"There are no classes, only structs. Structs can have methods.\n\n```go\n// A struct is a type. It's also a collection of fields\n\n// Declaration\ntype Vertex struct {\n    X, Y int\n}\n\n// Creating\nvar v = Vertex{1, 2}\nvar v = Vertex{X: 1, Y: 2} // Creates a struct by defining values with keys\nvar v = []Vertex{{1,2},{5,2},{5,5}} // Initialize a slice of structs\n\n// Accessing members\nv.X = 4\n\n// You can declare methods on structs. The struct you want to declare the\n// method on (the receiving type) comes between the the func keyword and\n// the method name. The struct is copied on each method call(!)\nfunc (v Vertex) Abs() float64 {\n    return math.Sqrt(v.X*v.X + v.Y*v.Y)\n}\n\n// Call method\nv.Abs()\n\n// For mutating methods, you need to use a pointer (see below) to the Struct\n// as the type. With this, the struct value is not copied for the method call.\nfunc (v *Vertex) add(n float64) {\n    v.X += n\n    v.Y += n\n}\n\n```\n\n**Anonymous structs:**\nCheaper and safer than using `map[string]interface{}`.\n\n```go\npoint := struct {\n    X, Y int\n}{1, 2}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Pointers","subsubtitle":"Pointers","raw":"```go\np := Vertex{1, 2}  // p is a Vertex\nq := \u0026p            // q is a pointer to a Vertex\nr := \u0026Vertex{1, 2} // r is also a pointer to a Vertex\n\n// The type of a pointer to a Vertex is *Vertex\n\nvar s *Vertex = new(Vertex) // new creates a pointer to a new struct instance\n```\n\n"},{"title":"Basic Syntax","subtitle":"Interfaces","subsubtitle":"Interfaces","raw":"```go\n// interface declaration\ntype Awesomizer interface {\n    Awesomize() string\n}\n\n// types do *not* declare to implement interfaces\ntype Foo struct {}\n\n// instead, types implicitly satisfy an interface if they implement all required methods\nfunc (foo Foo) Awesomize() string {\n    return \"Awesome!\"\n}\n```\n\n"},{"title":"Basic Syntax","subtitle":"Embedding","subsubtitle":"Embedding","raw":"There is no subclassing in Go. Instead, there is interface and struct embedding.\n\n\n```go\n// ReadWriter implementations must satisfy both Reader and Writer\ntype ReadWriter interface {\n    Reader\n    Writer\n}\n\n// Server exposes all the methods that Logger has\ntype Server struct {\n    Host string\n    Port int\n    *log.Logger\n}\n\n// initialize the embedded type the usual way\nserver := \u0026Server{\"localhost\", 80, log.New(...)}\n\n// methods implemented on the embedded struct are passed through\nserver.Log(...) // calls server.Logger.Log(...)\n\n// the field name of the embedded type is its type name (in this case Logger)\nvar logger *log.Logger = server.Logger\n```\n\n"},{"title":"Basic Syntax","subtitle":"Errors","subsubtitle":"Errors","raw":"There is no exception handling. Functions that might produce an error just declare an additional return value of type `Error`. This is the `Error` interface:\n\n```go\ntype error interface {\n    Error() string\n}\n```\n\nA function that might return an error:\n\n```go\nfunc doStuff() (int, error) {\n}\n\nfunc main() {\n    result, err := doStuff()\n    if err != nil {\n        // handle error\n    } else {\n        // all is good, use result\n    }\n}\n```\n\n"},{"title":"Concurrency","subtitle":"Goroutines","subsubtitle":"Goroutines","raw":"Goroutines are lightweight threads (managed by Go, not OS threads). `go f(a, b)` starts a new goroutine which runs `f` (given `f` is a function).\n\n\n```go\n// just a function (which can be later started as a goroutine)\nfunc doStuff(s string) {\n}\n\nfunc main() {\n    // using a named function in a goroutine\n    go doStuff(\"foobar\")\n\n    // using an anonymous inner function in a goroutine\n    go func (x int) {\n        // function body goes here\n    }(42)\n}\n```\n\n"},{"title":"Concurrency","subtitle":"Channels","subsubtitle":"Channels","raw":"```go\nch := make(chan int) // create a channel of type int\nch \u003c- 42             // Send a value to the channel ch.\nv := \u003c-ch            // Receive a value from ch\n\n// Non-buffered channels block. Read blocks when no value is available, write blocks until there is a read.\n\n// Create a buffered channel. Writing to a buffered channels does not block if less than \u003cbuffer size\u003e unread values have been written.\nch := make(chan int, 100)\n\nclose(ch) // closes the channel (only sender should close)\n\n// read from channel and test if it has been closed\nv, ok := \u003c-ch\n\n// if ok is false, channel has been closed\n\n// Read from channel until it is closed\nfor i := range ch {\n    fmt.Println(i)\n}\n\n// select blocks on multiple channel operations, if one unblocks, the corresponding case is executed\nfunc doStuff(channelOut, channelIn chan int) {\n    select {\n    case channelOut \u003c- 42:\n        fmt.Println(\"We could write to channelOut!\")\n    case x := \u003c- channelIn:\n        fmt.Println(\"We could read from channelIn\")\n    case \u003c-time.After(time.Second * 1):\n        fmt.Println(\"timeout\")\n    }\n}\n```\n\n"},{"title":"Concurrency","subtitle":"Channels","subsubtitle":"Channel Axioms","raw":"- A send to a nil channel blocks forever\n\n```go\nvar c chan string\nc \u003c- \"Hello, World!\"\n// fatal error: all goroutines are asleep - deadlock!\n```\n\n- A receive from a nil channel blocks forever\n\n```go\nvar c chan string\nfmt.Println(\u003c-c)\n// fatal error: all goroutines are asleep - deadlock!\n```\n\n- A send to a closed channel panics\n\n```go\nvar c = make(chan string, 1)\nc \u003c- \"Hello, World!\"\nclose(c)\nc \u003c- \"Hello, Panic!\"\n// panic: send on closed channel\n```\n\n- A receive from a closed channel returns the zero value immediately\n\n```go\nvar c = make(chan int, 2)\nc \u003c- 1\nc \u003c- 2\nclose(c)\nfor i := 0; i \u003c 3; i++ {\n    fmt.Printf(\"%d \", \u003c-c)\n}\n// 1 2 0\n```\n\n"},{"title":"Concurrency","subtitle":"Printing","subsubtitle":"Printing","raw":"```go\nfmt.Println(\"Hello, 你好, नमस्ते, Привет, ᎣᏏᏲ\") // basic print, plus newline\np := struct { X, Y int }{ 17, 2 }\nfmt.Println( \"My point:\", p, \"x coord=\", p.X ) // print structs, ints, etc\ns := fmt.Sprintln( \"My point:\", p, \"x coord=\", p.X ) // print to string variable\n\nfmt.Printf(\"%d hex:%x bin:%b fp:%f sci:%e\",17,17,17,17.0,17.0) // c-ish format\ns2 := fmt.Sprintf( \"%d %f\", 17, 17.0 ) // formatted print to string variable\n\nhellomsg := `\n \"Hello\" in Chinese is 你好 ('Ni Hao')\n \"Hello\" in Hindi is नमस्ते ('Namaste')\n` // multi-line string literal, using back-tick at beginning and end\n```\n\n"},{"title":"Concurrency","subtitle":"Reflection","subsubtitle":"Type Switch","raw":"A type switch is like a regular switch statement, but the cases in a type switch specify types (not values), and those values are compared against the type of the value held by the given interface value.\n\n```go\nfunc do(i interface{}) {\n    switch v := i.(type) {\n    case int:\n        fmt.Printf(\"Twice %v is %v\\n\", v, v*2)\n    case string:\n        fmt.Printf(\"%q is %v bytes long\\n\", v, len(v))\n    default:\n        fmt.Printf(\"I don't know about type %T!\\n\", v)\n    }\n}\n\nfunc main() {\n    do(21)\n    do(\"hello\")\n    do(true)\n}\n```\n\n"},{"title":"Files","subtitle":"Reading Files","subsubtitle":"Reading Files","raw":"```go\npackage main\n\nimport (\n    \"fmt\"\n    \"io/ioutil\"\n)\n\nfunc main() {\n    data, err := ioutil.ReadFile(\"text.txt\")\n    if err != nil {\n        return\n    }\n    fmt.Println(string(data))\n}\n```\n\n"},{"title":"Files","subtitle":"Writing Files","subsubtitle":"Writing Files","raw":"```go\npackage main\n\nimport \"os\"\n\nfunc main() {\n    file, err := os.Create(\"text.txt\")\n    if err != nil {\n        return\n    }\n    defer file.Close()\n\n    file.WriteString(\"test\\nhello\")\n}\n```\n\n"},{"title":"Snippets","subtitle":"HTTP Server","subsubtitle":"HTTP Server","raw":"```go\npackage main\n\nimport (\n    \"fmt\"\n    \"net/http\"\n)\n\n// define a type for the response\ntype Hello struct{}\n\n// let that type implement the ServeHTTP method (defined in interface http.Handler)\nfunc (h Hello) ServeHTTP(w http.ResponseWriter, r *http.Request) {\n    fmt.Fprint(w, \"Hello!\")\n}\n\nfunc main() {\n    var h Hello\n    http.ListenAndServe(\"localhost:4000\", h)\n}\n\n// Here's the method signature of http.ServeHTTP:\n// type Handler interface {\n//     ServeHTTP(w http.ResponseWriter, r *http.Request)\n// }\n```\n\n"}]}}},"page":"/","query":{},"buildId":"p_VYS9WjTD0njJCLgK64k","dynamicBuildId":false,"assetPrefix":"/golang-cheat-sheet","nextExport":true}</script><script async="" id="__NEXT_PAGE__/" src="/golang-cheat-sheet/_next/static/p_VYS9WjTD0njJCLgK64k/pages/index.js"></script><script async="" id="__NEXT_PAGE__/_app" src="/golang-cheat-sheet/_next/static/p_VYS9WjTD0njJCLgK64k/pages/_app.js"></script><script src="/golang-cheat-sheet/_next/static/runtime/webpack-f5e50b6b501ccea2a79b.js" async=""></script><script src="/golang-cheat-sheet/_next/static/chunks/commons.bdb4fb5f14736ffc3a25.js" async=""></script><script src="/golang-cheat-sheet/_next/static/runtime/main-635ff2e09a94bf14329b.js" async=""></script></body></html>
