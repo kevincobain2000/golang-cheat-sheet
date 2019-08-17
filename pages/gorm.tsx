@@ -42,7 +42,7 @@ const Gorm = (props: any) => {
 };
 
 Gorm.getInitialProps = async (ctx: any) => {
-  const { items } = await ctx.store.dispatch(getMarkdownJson("Golang"));
+  const { items } = await ctx.store.dispatch(getMarkdownJson("Gorm"));
   return { items };
 };
 

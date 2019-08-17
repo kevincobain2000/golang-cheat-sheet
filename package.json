@@ -19,6 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/react-redux": "^7.1.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "bulma": "^0.7.5",
@@ -52,6 +53,7 @@
     "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-react": "^7.14.3",
     "redux-devtools": "^3.5.0",
+    "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.5.3"
   }
 }
