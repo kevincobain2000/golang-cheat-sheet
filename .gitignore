@@ -2,3 +2,4 @@ node_modules/
 .next/
 dist/
 .DS_STORE
+jmeter.log
