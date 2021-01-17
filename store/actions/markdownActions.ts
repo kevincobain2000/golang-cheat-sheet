@@ -13,11 +13,11 @@ export const getMarkdownJson = (filename: string) => async (
 export const searchMarkdownJson = (
   fuse: any,
   items: any,
-  name: string
+  keyword: string
 ) => async (dispatch: Dispatch) => {
   let _items = [];
-  if (name && name.trim()) {
-    _items = fuse.search(name);
+  if (keyword && keyword.trim()) {
+    _items = fuse.search(keyword);
   } else {
     _items = items;
   }

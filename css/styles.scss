@@ -6,6 +6,7 @@
 // Set your brand colors
 $purple: #8a4d76;
 $pink: #fa7c91;
+$blue: #4a4ae1;
 $brown: #757763;
 $beige-light: #d0d1cd;
 $beige-lighter: #eff0eb;
@@ -23,7 +24,7 @@ $body-background-color: #f1f3f5;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
-$link: $pink;
+$link: $blue;
 
 // @import "../node_modules/bulma/bulma.sass";
 @import "../node_modules/bulma/sass/utilities/_all.sass";

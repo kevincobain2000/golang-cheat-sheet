@@ -736,3 +736,61 @@ func main() {
 // }
 ```
 
+## Dependency injection
+
+**Without dependency injection**
+
+https://elliotchance.medium.com/a-new-simpler-way-to-do-dependency-injection-in-go-9e191bef50d5
+
+```go
+type SendEmail struct {
+    From string
+}
+func (sender *SendEmail) Send(to, subject, body string) error {
+    // It sends an email here, and perhaps returns an error.
+}
+
+type CustomerWelcome struct{}
+func (welcomer *CustomerWelcome) Welcome(name, email string) error {
+    body := fmt.Sprintf("Hi, %s!", name)
+    subject := "Welcome"
+    emailer := &SendEmail{
+        From: "hi@welcome.com",
+    }
+    return emailer.Send(email, subject, body)
+}
+
+// Usage
+welcomer := &CustomerWelcome{}
+err := welcomer.Welcome("Bob", "bob@smith.com")
+// check error...
+```
+
+**With dependency injection**
+
+```go
+// EmailSender provides an interface so we can swap out the
+// implementation of SendEmail under tests.
+type EmailSender interface {
+    Send(to, subject, body string) error
+}
+type CustomerWelcome struct{
+    Emailer EmailSender
+}
+func (welcomer *CustomerWelcome) Welcome(name, email string) error {
+    body := fmt.Sprintf("Hi, %s!", name)
+    subject := "Welcome"
+
+    return welcomer.Emailer.Send(email, subject, body)
+}
+
+// Usage
+emailer := &SendEmail{
+    From: "hi@welcome.com",
+}
+welcomer := &CustomerWelcome{
+    Emailer: emailer,
+}
+err := welcomer.Welcome("Bob", "bob@smith.com")
+// check error...
+```

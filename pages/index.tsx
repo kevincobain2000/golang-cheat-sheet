@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Card from "../components/Card";
 import Fuse from "fuse.js";
 import FuseOptions from "../variables/fuse";
 import { connect } from "react-redux";
+import { useRouter } from 'next/router'
+import { updateRouterUrl } from '../lib/window';
 
 import {
   searchMarkdownJson,
@@ -11,22 +13,26 @@ import {
 } from "../store/actions/markdownActions";
 
 const Index = (props: any) => {
-  const [items, setItems] = useState(props.items);
+  const router = useRouter()
+  const [items] = useState(props.items);
+  let [keyword, setKeyword] = useState(router.query.keyword );
 
   let fuse = new Fuse(items, FuseOptions);
 
-  let handleInputChange = (name: string): void => {
-    props.searchMarkdownJson(fuse, items, name);
-  };
+  useEffect(() => {
+    props.searchMarkdownJson(fuse, items, keyword)
+    updateRouterUrl({keyword: keyword})
+  }, [keyword])
 
   return (
     <Layout>
       <input
         autoFocus
         type="text"
+        defaultValue={keyword}
         className="input is-info"
         placeholder="Type here..."
-        onChange={e => handleInputChange(e.target.value)}
+        onChange={(event): any => setKeyword(event.target.value)}
       />
       <br />
       <br />

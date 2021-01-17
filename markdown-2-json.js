@@ -50,7 +50,7 @@ for (let filename of filenames) {
   fs.writeFile("Cheatsheets/json/" + filename + ".json", json, err => {
     if (err) console.log(err);
     console.log(
-      "Successfully writter ./Cheatsheets/" +
+      "Successfully written ./Cheatsheets/" +
         filename +
         " to ./Cheatsheets/json/" +
         filename +
