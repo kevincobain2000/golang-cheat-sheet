@@ -12,7 +12,7 @@
     "export": "next export -o dist/",
     "start": "NODE_ENV=production node server.js",
     "lint": "eslint -c .eslintrc.json --ext .js,.ts,.tsx {pages,components}/**",
-    "stylelint": "stylelint.js --config=.stylelintrc.json css/*",
+    "stylelint": "node_modules/stylelint/bin/stylelint.js --config=.stylelintrc.json css/*",
     "next-start": "next start"
   },
   "keywords": [],
