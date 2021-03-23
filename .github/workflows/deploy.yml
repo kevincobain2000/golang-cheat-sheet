@@ -36,7 +36,7 @@ jobs:
 
     - name: Next Export
       run: |
-        npm run export
+        npm run export -o docs/
         touch docs/.nojekyll
 
     - name: Deploy
