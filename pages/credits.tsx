@@ -11,7 +11,7 @@ import {
 } from "../store/actions/markdownActions";
 
 const Credits = (props: any) => {
-  const [items, setItems] = useState(props.items);
+  const [items] = useState(props.items);
 
   let fuse = new Fuse(items, FuseOptions);
 

@@ -1,7 +1,7 @@
 import React from "react";
 import MarkdownContent from "../components/MarkdownContent";
 
-const Card = (props: any): JSX.Element => {
+const Card = (props: any): any => {
   return (
     <div className="card">
       <header className="card-header">

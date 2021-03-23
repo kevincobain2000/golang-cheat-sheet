@@ -29,7 +29,7 @@ jobs:
       run: npm run stylelint
 
     - name: Eslint
-      run: npm run eslint
+      run: npm run lint
 
     - name: Next Build
       run: npm run build

@@ -3,7 +3,7 @@ import Link from "next/link";
 import "../css/styles.scss";
 import "../css/styles.css";
 
-const Layout = (props: any): JSX.Element => {
+const Layout = (props: any): any => {
   return (
     <div className="container is-widescreen is-mobile">
       <h1>

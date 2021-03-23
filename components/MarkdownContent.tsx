@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import CodeBlock from "./CodeBlock";
 import PropTypes from "prop-types";
 
-const MarkdownContent = (props: any): JSX.Element => {
+const MarkdownContent = (props: any): any => {
   return (
     <div>
       <ReactMarkdown
