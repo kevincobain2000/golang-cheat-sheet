@@ -9,7 +9,7 @@
     "deploy": "npm run prepare-deploy; ./deploy.sh",
     "markdown": "node markdown-2-json.js",
     "build": "npm run markdown; next build",
-    "export": "next export -o dist/",
+    "export": "next export -o docs/",
     "start": "NODE_ENV=production node server.js",
     "lint": "eslint -c .eslintrc.json --ext .js,.ts,.tsx {pages,components}/**",
     "stylelint": "node_modules/stylelint/bin/stylelint.js --config=.stylelintrc.json css/*",
