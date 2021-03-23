@@ -483,6 +483,36 @@ func (foo Foo) Awesomize() string {
 }
 ```
 
+**Another example**
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+type Circle interface{
+    GetRadius() int64
+}
+
+type CircleImpl struct{}
+
+func NewCircle() *CircleImpl {
+    return &(CircleImpl{})
+}
+
+
+func (*CircleImpl) GetRadius() int64{
+    return int64(100)
+}
+func main() {
+    circle := NewCircle()
+	fmt.Println(circle.GetRadius())
+}
+
+```
+
 ## Embedding
 
 There is no subclassing in Go. Instead, there is interface and struct embedding.
