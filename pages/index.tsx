@@ -21,7 +21,7 @@ const Index = (props: any) => {
 
   useEffect(() => {
     props.searchMarkdownJson(fuse, items, keyword)
-    updateRouterUrl({keyword: keyword})
+    // updateRouterUrl({keyword: keyword})
   }, [keyword])
 
   return (
