@@ -15,6 +15,7 @@ func main() {
 
 
 ## Declarations
+
 Type goes after identifier!
 ```go
 var foo int // declaration without initialization
@@ -61,6 +62,23 @@ func main() {
     const d = 3e20 / n
     fmt.Println(d)
 }
+```
+
+## Blank Identifiers
+
+```go
+// this does *nothing*
+_ := 42
+
+// this calls `getThing` but throws away the 
+// two return values
+_, _ := getThing();
+```
+
+Importing
+
+```go
+import _ "log"
 ```
 
 ## Operators

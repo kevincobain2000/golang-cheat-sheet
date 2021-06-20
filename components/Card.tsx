@@ -9,7 +9,7 @@ const Card = (props: any): any => {
           <h2>
             <b>{props.item.subtitle}</b>
           </h2>
-          <span className="ml-2 mono">({props.item.title})</span>
+          <span className="ml-2">({props.item.title})</span>
         </span>
       </header>
       <div className="card-content">

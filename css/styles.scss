@@ -39,8 +39,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
+  font-family: "Nunito", Arial, Helvetica, sans-serif;
 }
 .mono {
   font-family: "Inconsolata", monospace;
@@ -85,6 +85,9 @@ input {
 .container.is-mobile {
   padding-left: 15px;
   padding-right: 15px;
+}
+.card {
+  color:black;
 }
 .card-thumb-image {
   height: 125px;
