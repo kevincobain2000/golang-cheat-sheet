@@ -5,7 +5,7 @@ import Fuse from "fuse.js";
 import FuseOptions from "../variables/fuse";
 import { connect } from "react-redux";
 import { useRouter } from 'next/router'
-import { updateRouterUrl } from '../lib/window';
+// import { updateRouterUrl } from '../lib/window';
 
 import {
   searchMarkdownJson,
