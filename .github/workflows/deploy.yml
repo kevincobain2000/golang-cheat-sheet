@@ -8,7 +8,7 @@ jobs:
   deploy:
     strategy:
       matrix:
-        node-versions: ['14.9']
+        node-versions: [16.1.0]
     runs-on: ubuntu-latest
     env:
       NEXT_TELEMETRY_DISABLED: 1
